@@ -1,0 +1,185 @@
+.user-dashboard {
+	min-height: calc(100vh - 100px);
+	padding:0;
+}
+
+.product-value {
+	width: 80px !important;
+    display: initial !important;
+    text-align: end !important;
+    padding: 0 !important;
+}
+
+.product-cents {
+	width: 40px !important;
+}
+
+.admin-image-container {
+    margin-bottom: 30px;
+}
+
+.admin-table {
+	max-height: calc(100vh - 230px);
+	overflow-y: auto;
+	margin-right: 0;
+}
+
+.table-responsive {
+	max-width: 100vw;
+	overflow-x: auto;
+}
+
+/******************** TEXT ********************/
+.text-align-center {
+	text-align: center;
+}
+
+.text-faded {
+	color: rgba(33,37,41,.7);
+}
+
+.text-faded-primary {
+	color: rgba(255,255,255,.7);
+}
+
+.text-primary {
+	color: #212529 !important;
+}
+
+.text-red {
+	color: red;
+}
+
+.text-green {
+	color: green;
+}
+
+.text-white {
+	color: white;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/******************** DISPLAY ********************/
+.display-grid {
+	display: grid;
+}
+
+.display-flex {
+	display: flex;
+}
+
+.display-flex-desktop {
+	display: flex;
+}
+
+/******************** MARGIN ********************/
+.margin-auto {
+	margin: auto;
+}
+
+.margin-auto-horizontal {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.margin-auto-vertical {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.margin-10-auto {
+    margin: 10px auto;
+}
+
+.margin-horizontal-4 {
+	margin-left: 4%;
+	margin-right: 4%;
+}
+
+.margin-horizontal-10 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.margin-top-10 {
+	margin-top: 10px;
+}
+
+.margin-top-20 {
+	margin-top: 20px;
+}
+
+.margin-top-30 {
+	margin-top: 30px;
+}
+
+.margin-top-50 {
+	margin-top: 50px;
+}
+
+.margin-top-100 {
+	margin-top: 100px;
+}
+
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+	margin-bottom: 30px;
+}
+
+.margin-bottom-50 {
+	margin-bottom: 50px;
+}
+
+.margin-bottom-70 {
+	margin-bottom: 70px;
+}
+
+.margin-bottom-80 {
+	margin-bottom: 80px;
+}
+
+.margin-bottom-100 {
+	margin-bottom: 100px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.margin-right-10 {
+	margin-right: 10px;
+}
+
+.margin-right-20 {
+	margin-right: 20px;
+}
+
+/******************** PADDING ********************/
+.padding-top-100 {
+	padding-top: 100px;
+}
+
+.padding-top-150 {
+	padding-top: 150px;
+}
+
+/******************** BORDER ********************/
+.border-right-gray {
+	border-right: 1px solid gray;
+} 
+
+@media only screen and (max-device-width: 767px) {
+	.row {
+		margin-right: -14px !important;
+	}
+}

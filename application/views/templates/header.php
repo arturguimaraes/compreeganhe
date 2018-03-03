@@ -19,8 +19,9 @@
     <!-- Plugin CSS -->
     <link href="assets/vendor/magnific-popup/magnific-popup.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="assets/css/creative.min.css" rel="stylesheet">
+    <!-- <link href="assets/css/creative.min.css" rel="stylesheet"> reset -->
     <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/home.css" rel="stylesheet">
     
     <!-- jQuery -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

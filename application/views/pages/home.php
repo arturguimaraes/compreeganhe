@@ -3,27 +3,27 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-header" src="assets/img/logo_cg.png"></a>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../assets/img/logo_cg_old.png" </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#services">Como Funciona?</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
+        </li> -->
         <?php if(!$this->user->checkLogin()) { ?>
             <li class="nav-item">
-              <a class="nav-link" href="/login">Entrar</a>
+              <a class="btn btn-green nav-link" href="/login">ENTRAR</a>
             </li>
         <?php } else { ?>
         	<li class="nav-item">
             <a class="nav-link" href="myaccount">Minha Conta</a>
           </li>
 		<? } ?>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
-        </li>
       </ul>
     </div>
   </div>
@@ -33,7 +33,7 @@
 <header class="masthead text-center text-white d-flex">
   <div class="container my-auto">
     <div class="row" style="padding-top: 50px;">
-      <div id="Caroulsel" class="col-md-12 carousel slide margin-top-50 margin-bottom-30" data-ride="carousel">
+      <!-- <div id="Caroulsel" class="col-md-12 carousel slide margin-top-50 margin-bottom-30" data-ride="carousel" reset>
         <div class="carousel-inner">
           <?php for($i=1; $i <= $carrousel['count']; $i++) { ?>
             <div class="carousel-item <?=($i==1 ? 'active' : '')?>">
@@ -49,19 +49,18 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Próximo</span>
         </a>
-      </div>
+      </div> -->
 
-      <div class="col-md-12"><a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a></div>
+      <!-- <div class="col-md-12"><a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a></div reset> -->
 
-      <!--<div class="col-md-4">
+      <div class="home-text" >
         <h2 class="text-uppercase">
-          <strong>Quanto você ganha para indicar o supermercado onde faz compras?</strong>
+          <strong>Compre, Compartilhe e Ganhe</strong>
         </h2>
         <hr>
         <p class="text-faded">Já pensou em ganhar dinheiro consumindo arroz, feijão, açucar, café, etc.?<br>Torne-se um consumidor inteligente!</p>
-        <a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a>
+        <a class="btn-green btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">SAIBA +</a>
       </div>
-      <div class="col-md-1"></div>-->
 
     </div>
   </div>

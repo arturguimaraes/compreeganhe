@@ -1,30 +1,12 @@
 <!-- HEADER -->
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <!-- NAVIGATION -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../assets/img/logo_cg_old.png" </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#services">Como Funciona?</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
-        </li> -->
-        <?php if(!$this->user->checkLogin()) { ?>
-            <li class="nav-item">
-              <a class="btn btn-green nav-link" href="/login">ENTRAR</a>
-            </li>
-        <?php } else { ?>
-        	<li class="nav-item">
-            <a class="nav-link" href="myaccount">Minha Conta</a>
-          </li>
-		<? } ?>
-      </ul>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../assets/img/logo.png" </a>
+    <div >
+      <a class="btn btn-green nav-link" href="/login">ENTRAR</a>
     </div>
   </div>
 </nav>
@@ -33,44 +15,48 @@
 <header class="masthead text-center text-white d-flex">
   <div class="container my-auto">
     <div class="row" style="padding-top: 50px;">
-      <!-- <div id="Caroulsel" class="col-md-12 carousel slide margin-top-50 margin-bottom-30" data-ride="carousel" reset>
-        <div class="carousel-inner">
-          <?php for($i=1; $i <= $carrousel['count']; $i++) { ?>
-            <div class="carousel-item <?=($i==1 ? 'active' : '')?>">
-              <img class="d-block w-100 margin-auto" src="<?=$carrousel['url'] . $i . $carrousel['extension']?>" alt="Compre & Ganhe <?=$i?>">
-            </div>
-          <? } ?>
-        </div>
-        <a class="carousel-control-prev" href="#Caroulsel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#Caroulsel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Próximo</span>
-        </a>
-      </div> -->
-
-      <!-- <div class="col-md-12"><a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a></div reset> -->
-
       <div class="home-text" >
-        <h2 class="text-uppercase">
-          <strong>Compre, Compartilhe e Ganhe</strong>
-        </h2>
-        <hr>
-        <p class="text-faded">Já pensou em ganhar dinheiro consumindo arroz, feijão, açucar, café, etc.?<br>Torne-se um consumidor inteligente!</p>
-        <a class="btn-green btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">SAIBA +</a>
+          <h2 class="text-uppercase">
+            <strong>Compre, Compartilhe e Ganhe</strong>
+          </h2>
+          <hr>
+          <p class="text-faded">Já pensou em ganhar dinheiro consumindo arroz, feijão, açucar, café, e outros produtos de super-mercado?<br>Torne-se um consumidor inteligente!</p>
+          <div class="row">
+            <a class="btn-green btn  btn-xl js-scroll-trigger margin-bottom-20" href="#how-01">SAIBA +</a>
+            <a class="btn-orange btn  btn-xl js-scroll-trigger margin-bottom-20" href="#contact">CONTATO</a>
+          </div>
       </div>
-
+      <div class="slogan-circle">
+        <div class="slogan-text">
+          <h3>Compre e Ganhe</h3>
+          <h6>Consumo Inteligente</h6>
+        </div>
+      </div>
     </div>
   </div>
+  <a class="arrow-btn" href="#page-top">
+    <div class="arrow arrow-first"></div>
+    <div class="arrow arrow-second"></div>
+  </a>
 </header>
 
-<section class="bg-primary" id="services">
-  <div class="container">
+<section class="bg-wave" id="how-01">
+  <div class="container  my-auto">
+    <!-- <h3 class="section-heading ">Como Funciona?</h3> -->
     <div class="row">
+      <div class="col-sm-5">
+       <h2 class="section-heading ">Seja Convidado</h2>
+      </div>
+      <div class="col-sm-5 col-sm-offset-2">
+        <div class="circle-illus white-bg">
+          <img src="../../assets/img/illustrations/01.png">
+        <div>
+      </div>
+    </div>
+  </div>    
+  <!-- <div class="row">
       <div class="col-md-12 text-center">
-        <h2 class="section-heading text-white">Como Funciona?</h2>
+        
         <hr class="my-4 light">
       </div>
       <?php for($i=1; $i <= $images['count']; $i++) { ?>
@@ -78,8 +64,7 @@
           <img class="w-100" src="<?=$images['url'] . $i . $images['extension']?>" alt="Saiba Como <?=$i?>">
         </div>
       <? } ?>  
-    </div>
-  </div>    
+    </div> -->
 
   <!--<div class="container">
     <div class="row">

@@ -70,6 +70,27 @@ class Message extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function sendToAll($message) {
+		$createDate =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
+		$success = true;
+		$userIDs = $this->user->getAllIDs();
+		foreach ($userIDs as $userId) {
+			$data = array(
+        				'from' 			=> 1,
+        				'to'   			=> $userId->id,
+        				'message' 		=> $message,
+						'read'			=> 0,
+						'deleted'		=> 0,
+						'createDate'	=> $createDate
+					);
+			if(!$this->db->insert('message', $data)) {
+				$success = false;
+				break;
+			}
+		} 
+		return $success;
+	}
+
 	public function markRead($id) {
 		if($id != NULL && $id != 0) {
 			$this->db->set('read', 1);

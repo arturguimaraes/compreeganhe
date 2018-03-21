@@ -12,6 +12,7 @@ class Captcha extends CI_Model {
 		$options = array(
         				'img_path'      => 'assets/captcha/',
         				'img_url'       => 'assets/captcha/',
+        				'word_length'   => 4,
         				'expiration'    => 7200 //2 hours
 					);
 		//Creates captcha
@@ -20,7 +21,7 @@ class Captcha extends CI_Model {
 		$data = array(
 				        'captcha_time'  => $captcha['time'],
 				        'ip_address'    => $this->input->ip_address(),
-				        'word'          => $captcha['word']
+				        'word'          => strtolower($captcha['word'])
 					);
 		//Database insert
 		$query = $this->db->insert_string('captcha', $data);
@@ -29,6 +30,8 @@ class Captcha extends CI_Model {
 	}
 
 	public function validate($captcha) {
+		//Transforms to lowercase
+		$captcha = strtolower($captcha);
 		// First, delete old captchas in database
 		$expiration = time() - 86400; // 1 day
 		$this->db->where('captcha_time < ', $expiration)->delete('captcha');

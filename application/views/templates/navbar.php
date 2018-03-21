@@ -1,7 +1,7 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="<?=base_url()?>"><img class="img-header" src="assets/img/logo_cg.png"></a>
+    <a class="navbar-brand js-scroll-trigger" href="<?=base_url()?>"><img class="img-header" src="assets/img/logo.png"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,11 +25,13 @@
                 <button class="dropdown-toggle nav-link" type="button" data-toggle="dropdown"><i class="fa fa-user"></i> Conta
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="myinfo" class="dropdown-menu-item"><i class="fa fa-drivers-license"></i> Dados Cadastrais</a></li>
+                  <li><a href="mybudget" class="dropdown-menu-item"><i class="fa fa-calculator"></i> Extrato</a></li>
                   <li><a href="mynetwork" class="dropdown-menu-item"><i class="fa fa-group"></i> Rede</a></li>
-                  <li><a href="mybudget" class="dropdown-menu-item"><i class="fa fa-dollar"></i> Extrato</a></li>
-                  <li><a href="messages" class="dropdown-menu-item"><i class="fa fa-envelope"></i> Mensagens</a></li>
+                  <li><a href="withdraw" class="dropdown-menu-item"><i class="fa fa-dollar"></i> Saque</a></li>
+                  <li><a href="pay" class="dropdown-menu-item"><i class="fa fa-barcode"></i> Pagar Fatura</a></li>
+                  <li><a href="myinfo" class="dropdown-menu-item"><i class="fa fa-drivers-license"></i> Dados Cadastrais</a></li>
                   <li><a href="password" class="dropdown-menu-item"><i class="fa fa-lock"></i> Mudar Senha</a></li>
+                  <!--<li><a href="messages" class="dropdown-menu-item"><i class="fa fa-envelope"></i> Mensagens</a></li>-->
                 </ul>
               </div>
             </li>
@@ -38,12 +40,13 @@
                   <button class="dropdown-toggle nav-link" type="button" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Comprar
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
-                    <li><a href="myorders" class="dropdown-menu-item" ><i class="fa fa-credit-card"></i> Meus Pedidos</a></li>
-                    <li><a href="cart" class="dropdown-menu-item" ><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                     <li><a href="shop" class="dropdown-menu-item" ><i class="fa fa-search"></i> Produtos</a></li>
+                    <li><a href="cart" class="dropdown-menu-item" ><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
+                    <li><a href="myorders" class="dropdown-menu-item" ><i class="fa fa-credit-card"></i> Pedidos</a></li>
                   </ul>
               </div>
             </li>
+            <li class="nav-item"><a href="messages" class="nav-link"><i class="fa fa-envelope"></i> Mensagens<?=$user->unreadMessages?></a></li>
           <? } ?>
           <li class="nav-item">
             <a class="nav-link not-clickable" href="javascript:;">

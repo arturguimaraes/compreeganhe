@@ -24,7 +24,7 @@
                   <tr <?= ($message->read == 0 && !$sent) ? 'style="background:#ffc107;"' : ''?>>
                   	<td><?=$message->read == 0 ? '<i class="fa fa-envelope"></i>' : '<i class="fa fa-envelope-open"></i>'?></td>
                     <td><?=$this->util->dateTimeToString($message->createDate)?></td>
-                    <td><?="$message->name ($message->username)"?></a></td>
+                    <td><?="$message->name"?></a></td>
                     <td><?=$this->util->getStringMax($message->message,50)?></td>
                   	<td><a href="message?id=<?=$message->messageId?><?=$sent ? '&sent=true' : ''?>">Ler Mensagem</a></td>
                   </tr>
@@ -38,18 +38,18 @@
           </table>
         </div>
         <div class="col-md-12 display-grid">
-            <div class="margin-auto">
-            	<?php if($sent) { ?>
-                	<a class="btn btn-primary text-white message-buttom-margin" href="messages">Suas Mensagens</a>
-        		<?php } else { ?>
-                	<?php if(count($messages) > 0) { ?>
-            			<a class="btn btn-danger text-white message-buttom-margin" href="deleteAllMessages">Apagar Todas</a>
-                    	<a class="btn btn-info text-white message-buttom-margin" href="readAllMessages">Marcar Todas Como Lidas</a>
-                	<? } ?>
-                    <a class="btn btn-primary text-white message-buttom-margin" href="messages?sent=true">Mensagens Enviadas</a>
-				<? } ?>
-                <a class="btn btn-success text-white message-buttom-margin" href="sendMessage">Enviar mensagem</a>
-            </div>
+          <div class="margin-auto">
+          	<?php if($sent) { ?>
+              <a class="btn btn-primary text-white message-buttom-margin hidden" href="messages">Suas Mensagens</a>
+      		  <?php } else { ?>
+            	<?php if(count($messages) > 0) { ?>
+                <a class="btn btn-danger text-white message-buttom-margin" href="deleteAllMessages">Apagar Todas</a>
+                <a class="btn btn-info text-white message-buttom-margin hidden" href="readAllMessages">Marcar Todas Como Lidas</a>
+            	<? } ?>
+              <a class="btn btn-primary text-white message-buttom-margin hidden" href="messages?sent=true">Mensagens Enviadas</a>
+			      <? } ?>
+            <a class="btn btn-success text-white message-buttom-margin hidden" href="sendMessage">Enviar mensagem</a>
+          </div>
         </div>
       </div>
     </div>

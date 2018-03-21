@@ -17,17 +17,23 @@
     <div class="container padding-top-100">
         <div class="col-md-12 margin-bottom-30">
             <h2 class="col-md-12 margin-bottom-50 text-align-center">Acessar</h2>
+            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-success button-my-account" href="mybudget">
+                <i class="fa fa-dollar"></i> Extrato
+            </a>
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-info button-my-account" href="mynetwork">
             	<i class="fa fa-group"></i> Rede
+            </a>
+            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-success button-my-account" href="withdraw">
+                <i class="fa fa-dollar"></i> Saque
+            </a>
+            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-warning button-my-account" href="pay">
+                <i class="fa fa-barcode"></i> Pagar Fatura
             </a>
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-primary button-my-account" href="myinfo">
             	<i class="fa fa-drivers-license"></i> Dados Cadastrais
             </a>
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-danger button-my-account" href="myorders">
                 <i class="fa fa-credit-card"></i> Pedidos
-            </a>
-            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-success button-my-account" href="mybudget">
-            	<i class="fa fa-dollar"></i> Extrato
             </a>
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-warning button-my-account" href="messages">
             	<i class="fa fa-envelope"></i> Mensagens <?=$user->unreadMessages?>

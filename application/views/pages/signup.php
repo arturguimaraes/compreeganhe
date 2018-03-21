@@ -26,28 +26,18 @@
 		                <div class="col-md-6 col-12">
 		                    <input type="text" id="name" name="name" class="form-control margin-bottom-10" placeholder="Nome Completo" required="true" autofocus value="<?=$this->user->getFromPost('name')?>">
 		                    <input type="email" id="email" name="email" class="form-control margin-bottom-10" placeholder="E-mail" required="true" autofocus value="<?=$this->user->getFromPost('email')?>">
-		                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" placeholder="CPF" required="true" maxlength=14 value="<?=$this->user->getFromPost('cpf')?>">
+		                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" placeholder="CPF" required="true" maxlength=14 value="<?=$this->user->getFromPost('cpf')?>" onblur="checkCPF(this.value);">
 		                    <input type="text" id="rg" name="rg" class="form-control margin-bottom-10" placeholder="RG" required="true" maxlength="12" value="<?=$this->user->getFromPost('rg')?>">
-		                    <input type="text" id="dob" name="dob" class="form-control margin-bottom-10" placeholder="Data de Nascimento" required="true" maxlength="10" value="<?=$this->user->getFromPost('dob')?>">
-		                    <input type="text" id="telefone" name="telefone" class="form-control margin-bottom-10" placeholder="Telefone" required="true" maxlength="15" value="<?=$this->user->getFromPost('telefone')?>">
-		                    <select id="estadoCivil" name="estadoCivil" class="form-control margin-bottom-10">
-		                      <option>-</option>
-		                      <option value="solteiro" <?=$this->user->getFromPost('estadoCivil') == 'solteiro' ? 'selected' : ''?>>Solteiro(a)</option>
-		                      <option value="casado" <?=$this->user->getFromPost('estadoCivil') == 'casado' ? 'selected' : ''?>>Casado(a)</option>
-		                      <option value="viuvo" <?=$this->user->getFromPost('estadoCivil') == 'viuvo' ? 'selected' : ''?>>Viúvo(a)</option>
-		                      <option value="outro" <?=$this->user->getFromPost('estadoCivil') == 'outro' ? 'selected' : ''?>>Outro</option>
-		                    </select>
-		                    <input type="text" id="motherName" name="motherName" class="form-control margin-bottom-10" placeholder="Nome da Mãe" value="<?=$this->user->getFromPost('motherName')?>">
-		                    <input type="text" id="fatherName" name="fatherName" class="form-control margin-bottom-10" placeholder="Nome do Pai" value="<?=$this->user->getFromPost('fatherName')?>">
+		                    <input type="text" id="dob" name="dob" class="form-control margin-bottom-10" placeholder="Data de Nascimento" required="true" maxlength="10" value="<?=$this->user->getFromPost('dob')?>" onblur="checkDOB(this.value);">
+		                    <input type="text" id="cep" name="cep" class="form-control margin-bottom-10" placeholder="CEP" required="true" maxlength="9" onblur="pesquisaCEP(this.value);" value="<?=$this->user->getFromPost('cep')?>">
 		                </div>
 		                <!-- /.col-md-6 -->
 
 		                <div class="col-md-6 col-12">
-		                    <input type="text" id="cep" name="cep" class="form-control margin-bottom-10" placeholder="CEP" required="true" maxlength="9" onblur="pesquisaCEP(this.value);" value="<?=$this->user->getFromPost('cep')?>">
 		                    <input type="text" id="logradouro" name="logradouro" class="form-control margin-bottom-10" placeholder="Logradouro" required="true" value="<?=$this->user->getFromPost('logradouro')?>">
-		                    <input type="text" id="numero" name="numero" class="form-control margin-bottom-10" placeholder="Nº" value="<?=$this->user->getFromPost('numero')?>">
+		                    <input type="text" id="numero" name="numero" class="form-control margin-bottom-10" placeholder="Nº" value="<?=$this->user->getFromPost('numero')?>" required>
 		                    <input type="text" id="complemento" name="complemento" class="form-control margin-bottom-10" placeholder="Complemento" value="<?=$this->user->getFromPost('complemento')?>">
-		                    <input type="text" id="bairro" name="bairro" class="form-control margin-bottom-10" placeholder="Bairro" value="<?=$this->user->getFromPost('bairro')?>">
+		                    <input type="text" id="bairro" name="bairro" class="form-control margin-bottom-10" placeholder="Bairro" value="<?=$this->user->getFromPost('bairro')?>" required>
 		                    <input type="text" id="cidade" name="cidade" class="form-control margin-bottom-10" placeholder="Cidade" required="true" value="<?=$this->user->getFromPost('cidade')?>">
 		                    <input type="text" id="estado" name="estado" class="form-control margin-bottom-10" placeholder="Estado" required="true" value="<?=$this->user->getFromPost('estado')?>">
 		                </div>

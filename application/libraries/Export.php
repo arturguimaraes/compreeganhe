@@ -44,7 +44,7 @@ class Export {
 					break;
 				case 'mybudget':
 					//Pega todas as transações do usuário
-					$data['transactions'] = $this->CI->transaction->getAll($data['user']->id);
+					$data['transactions'] = $this->CI->util->orderTransactionArray($this->CI->transaction->getAll($data['user']->id));
 					//Headers do arquivo .csv
 					$text = "Data,Descrição,Valor\n";
 					$total = 0;

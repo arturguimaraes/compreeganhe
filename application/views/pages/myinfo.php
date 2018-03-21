@@ -33,7 +33,7 @@
             	<div class="form-group row hidden">
               	<label for="cpf" class="col-sm-3 col-form-label">CPF</label>
                   <div class="col-sm-9">
-                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" required="true" maxlength=14 value="<?=$this->user->get($user, 'cpf')?>">
+                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" required="true" maxlength=14 value="<?=$this->user->get($user, 'cpf')?>" onblur="checkCPF(this.value);">
                   </div>
               </div>
             	<div class="form-group row hidden">
@@ -43,15 +43,15 @@
                   </div>
               </div>
             	<div class="form-group row">
-              	<label for="dob" class="col-sm-3 col-form-label">Data de Nascimento</label>
+              	<label for="dob" class="col-sm-3 col-form-label">Nascimento</label>
                   <div class="col-sm-9">
-                    <input type="text" id="dob" name="dob" class="form-control margin-bottom-10" required="true" maxlength="10" value="<?=$this->user->dateToDateString($this->user->get($user, 'dob'))?>">
+                    <input type="text" id="dob" name="dob" class="form-control margin-bottom-10" required="true" maxlength="10" value="<?=$this->user->dateToDateString($this->user->get($user, 'dob'))?>" onblur="checkDOB(this.value);">
                   </div>
               </div>
               <div class="form-group row">
                 <label for="telefone" class="col-sm-3 col-form-label">Telefone</label>
                   <div class="col-sm-9">
-                    <input type="text" id="telefone" name="telefone" class="form-control margin-bottom-10" required="true" maxlength="15" value="<?=$this->user->get($user, 'telefone')?>">
+                    <input type="text" id="telefone" name="telefone" class="form-control margin-bottom-10" maxlength="15" value="<?=$this->user->get($user, 'telefone')?>">
                   </div>
               </div>
               <div class="form-group row">
@@ -64,6 +64,54 @@
                 <label for="fatherName" class="col-sm-3 col-form-label">Nome do Pai</label>
                   <div class="col-sm-9">
                     <input type="text" id="fatherName" name="fatherName" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'fatherName')?>">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="estadoCivil" class="col-sm-3 col-form-label">Estado Civil</label>
+                  <div class="col-sm-9">
+                    <select id="estadoCivil" name="estadoCivil" class="form-control margin-bottom-10">
+                      <option value="">Selecione o estado civil</option>
+                      <option value="solteiro" <?=$this->user->get($user, 'estadoCivil') == 'solteiro' ? 'selected' : ''?>>Solteiro(a)</option>
+                      <option value="casado" <?=$this->user->get($user, 'estadoCivil') == 'casado' ? 'selected' : ''?>>Casado(a)</option>
+                      <option value="viuvo" <?=$this->user->get($user, 'estadoCivil') == 'viuvo' ? 'selected' : ''?>>Viúvo(a)</option>
+                      <option value="outro" <?=$this->user->get($user, 'estadoCivil') == 'outro' ? 'selectec' : ''?>>Outro</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="sexo" class="col-sm-3 col-form-label">Sexo</label>
+                  <div class="col-sm-9">
+                    <select id="sexo" name="sexo" class="form-control margin-bottom-10">
+                      <option value="">Selecione o sexo</option>
+                      <option value="masculino" <?=$this->user->get($user, 'sexo') == 'masculino' ? 'selected' : ''?>>Masculino</option>
+                      <option value="feminino" <?=$this->user->get($user, 'sexo') == 'feminino' ? 'selected' : ''?>>Feminino</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="escolaridade" class="col-sm-3 col-form-label">Grau de Escolaridade</label>
+                  <div class="col-sm-9">
+                    <select id="escolaridade" name="escolaridade" class="form-control margin-bottom-10">
+                      <option value="">Selecione o grau de escolaridade</option>
+                      <option value="fundamental" <?=$this->user->get($user, 'escolaridade') == 'fundamental' ? 'selected' : ''?>>Ensino Fundamental</option>
+                      <option value="medio" <?=$this->user->get($user, 'escolaridade') == 'medio' ? 'selected' : ''?>>Ensino Médio</option>
+                      <option value="tecnico" <?=$this->user->get($user, 'escolaridade') == 'tecnico' ? 'selected' : ''?>>Ensino Técnico</option>
+                      <option value="superior" <?=$this->user->get($user, 'escolaridade') == 'superior' ? 'selected' : ''?>>Ensino Superior</option>
+                      <option value="pos" <?=$this->user->get($user, 'escolaridade') == 'pos' ? 'selected' : ''?>>Pós Graduado (mestrado / doutorado)</option>
+                      Ensino 
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="profissao" class="col-sm-3 col-form-label">Profissão</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="profissao" name="profissao" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'profissao')?>">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="pis" class="col-sm-3 col-form-label">PIS</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="pis" name="pis" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'pis')?>">
                   </div>
               </div>
             </div>
@@ -110,18 +158,6 @@
                 <label for="estado" class="col-sm-3 col-form-label">Estado</label>
                   <div class="col-sm-9">
                     <input type="text" id="estado" name="estado" class="form-control margin-bottom-10" required="true" value="<?=$this->user->get($user, 'estado')?>">
-                  </div>
-              </div>
-              <div class="form-group row">
-                <label for="estadoCivil" class="col-sm-3 col-form-label">Estado Civíl</label>
-                  <div class="col-sm-9">
-                    <select id="estadoCivil" name="estadoCivil" class="form-control margin-bottom-10">
-                      <option>-</option>
-                      <option value="solteiro" <?=$this->user->get($user, 'estadoCivil') == 'solteiro' ? 'selected' : ''?>>Solteiro(a)</option>
-                      <option value="casado" <?=$this->user->get($user, 'estadoCivil') == 'casado' ? 'selected' : ''?>>Casado(a)</option>
-                      <option value="viuvo" <?=$this->user->get($user, 'estadoCivil') == 'viuvo' ? 'selected' : ''?>>Viúvo(a)</option>
-                      <option value="outro" <?=$this->user->get($user, 'estadoCivil') == 'outro' ? 'selectec' : ''?>>Outro</option>
-                    </select>
                   </div>
               </div>
             </div>

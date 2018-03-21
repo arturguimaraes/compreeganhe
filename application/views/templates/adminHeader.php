@@ -35,14 +35,17 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li><a href="admin"><i class="fa fa-file-photo-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Carrossel</span></a></li>
-                        <li><a href="adminSobre"><i class="fa fa-file-photo-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Como Funciona?</span></a></li>
-                        <li><a href="adminTaxas"><i class="fa fa-percent" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Taxas</span></a></li>
-                        <li><a href="adminPrecos"><i class="fa fa-dollar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Preços</span></a></li>
-                        <li><a href="adminAddProduct"><i class="fa fa-gift" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Adicionar Produto</span></a></li>
-                        <li><a href="adminOrders?limit=100"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gerenciar Pedidos</span></a></li>
-                        <li><a href="adminUsers?limit=100"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gerenciar Usuários</span></a></li>
-                        <li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Sair</span></a></li>
+                        <?php if($this->adminModel->checkLogin()) { ?>
+                            <li><a href="admin"><i class="fa fa-file-photo-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Carrossel</span></a></li>
+                            <li><a href="adminSobre"><i class="fa fa-file-photo-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Como Funciona?</span></a></li>
+                            <li><a href="adminTaxas"><i class="fa fa-percent" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Taxas</span></a></li>
+                            <li><a href="adminPrecos"><i class="fa fa-dollar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Preços</span></a></li>
+                            <li><a href="adminAddProduct"><i class="fa fa-gift" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Adicionar Produto</span></a></li>
+                            <li><a href="adminOrders?limit=100"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gerenciar Pedidos</span></a></li>
+                            <li><a href="adminUsers?limit=100"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gerenciar Usuários</span></a></li>
+                            <li><a href="adminMessages"><i class="fa fa-envelope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Enviar Mensagens</span></a></li>
+                            <li><a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Sair</span></a></li>
+                        <? } ?>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,291 @@
+[08-Jan-2018 10:47:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'loadPage' (T_STRING), expecting variable (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 26
+[08-Jan-2018 10:50:27 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'loadPage' (T_STRING), expecting variable (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 18
+[08-Jan-2018 10:50:28 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'loadPage' (T_STRING), expecting variable (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 18
+[08-Jan-2018 13:12:03 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 12
+[08-Jan-2018 13:12:05 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 12
+[08-Jan-2018 13:12:43 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 12
+[08-Jan-2018 13:12:44 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 12
+[11-Jan-2018 16:49:38 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:50:08 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:50:17 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:51:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:52:04 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:52:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:52:17 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 15
+[11-Jan-2018 16:52:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 15
+[11-Jan-2018 16:52:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 15
+[11-Jan-2018 16:52:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 15
+[11-Jan-2018 16:52:43 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 15
+[11-Jan-2018 16:52:44 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:52:56 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:53:22 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:53:52 America/Sao_Paulo] PHP Fatal error:  Cannot access parent:: when current class scope has no parent in /home/smallvis/public_html/application/libraries/PageHelper.php on line 7
+[11-Jan-2018 16:54:51 America/Sao_Paulo] PHP Fatal error:  Class 'CI_Library' not found in /home/smallvis/public_html/application/libraries/PageHelper.php on line 4
+[11-Jan-2018 16:56:57 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:56:59 America/Sao_Paulo] PHP Fatal error:  Call to a member function loadPage() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 33
+[11-Jan-2018 16:58:18 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 9
+[11-Jan-2018 16:59:13 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 9
+[11-Jan-2018 16:59:15 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 9
+[11-Jan-2018 17:00:24 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$CI' (T_VARIABLE), expecting function (T_FUNCTION) in /home/smallvis/public_html/application/libraries/Helper.php on line 6
+[11-Jan-2018 17:00:36 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 15
+[11-Jan-2018 17:02:13 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 19
+[11-Jan-2018 17:10:41 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/controllers/Pages.php on line 37
+[11-Jan-2018 17:11:03 America/Sao_Paulo] PHP Fatal error:  Call to undefined function redirect() in /home/smallvis/public_html/application/controllers/Pages.php on line 101
+[11-Jan-2018 17:15:43 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:15:45 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:03 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:06 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:12 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:25 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:27 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::loadPage() in /home/smallvis/public_html/application/controllers/Pages.php on line 82
+[11-Jan-2018 17:16:55 America/Sao_Paulo] PHP Fatal error:  Call to undefined function base_url() in /home/smallvis/public_html/application/views/pages/login.php on line 47
+[11-Jan-2018 17:17:18 America/Sao_Paulo] PHP Fatal error:  Call to undefined function base_url() in /home/smallvis/public_html/application/views/pages/login.php on line 47
+[11-Jan-2018 17:17:33 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::sendMessage() in /home/smallvis/public_html/application/controllers/Pages.php on line 72
+[11-Jan-2018 17:17:35 America/Sao_Paulo] PHP Fatal error:  Call to undefined function base_url() in /home/smallvis/public_html/application/views/pages/login.php on line 47
+[11-Jan-2018 17:17:38 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::sendMessage() in /home/smallvis/public_html/application/controllers/Pages.php on line 72
+[11-Jan-2018 17:17:56 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::sendMessage() in /home/smallvis/public_html/application/controllers/Pages.php on line 72
+[11-Jan-2018 17:17:58 America/Sao_Paulo] PHP Fatal error:  Call to undefined function base_url() in /home/smallvis/public_html/application/views/pages/login.php on line 47
+[11-Jan-2018 17:18:00 America/Sao_Paulo] PHP Fatal error:  Call to undefined function mdate() in /home/smallvis/public_html/application/controllers/Pages.php on line 75
+[12-Jan-2018 10:16:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 38
+[12-Jan-2018 10:17:00 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 38
+[12-Jan-2018 10:23:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 31
+[12-Jan-2018 10:23:15 America/Sao_Paulo] PHP Fatal error:  Call to a member function view() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 31
+[15-Jan-2018 19:26:57 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::login() in /home/smallvis/public_html/application/controllers/Pages.php on line 17
+[15-Jan-2018 19:26:58 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::login() in /home/smallvis/public_html/application/controllers/Pages.php on line 17
+[16-Jan-2018 09:35:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$code' (T_VARIABLE) in /home/smallvis/public_html/application/libraries/String.php on line 54
+[16-Jan-2018 09:35:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$code' (T_VARIABLE) in /home/smallvis/public_html/application/libraries/String.php on line 54
+[16-Jan-2018 10:29:40 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/smallvis/public_html/application/models/Company.php on line 42
+[16-Jan-2018 10:29:40 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/smallvis/public_html/application/models/Company.php on line 42
+[16-Jan-2018 17:52:59 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[16-Jan-2018 17:53:00 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[16-Jan-2018 21:26:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '*' in /home/smallvis/public_html/application/controllers/Pages.php on line 170
+[16-Jan-2018 21:26:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '*' in /home/smallvis/public_html/application/controllers/Pages.php on line 170
+[17-Jan-2018 10:21:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/smallvis/public_html/application/controllers/Pages.php on line 157
+[17-Jan-2018 10:21:13 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/smallvis/public_html/application/controllers/Pages.php on line 157
+[17-Jan-2018 10:54:42 America/Sao_Paulo] PHP Fatal error:  Call to undefined function format() in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[17-Jan-2018 10:54:49 America/Sao_Paulo] PHP Fatal error:  Call to undefined function format() in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[17-Jan-2018 10:59:01 America/Sao_Paulo] PHP Fatal error:  Call to a member function format() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[17-Jan-2018 10:59:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function format() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[17-Jan-2018 11:01:37 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/smallvis/public_html/application/controllers/Pages.php on line 104
+[17-Jan-2018 11:27:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ':' in /home/smallvis/public_html/application/controllers/Pages.php on line 111
+[23-Jan-2018 14:33:02 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 327
+[23-Jan-2018 14:33:03 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 327
+[23-Jan-2018 17:46:36 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/smallvis/public_html/application/controllers/Pages.php on line 446
+[23-Jan-2018 22:28:50 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/libraries/String.php on line 91
+[23-Jan-2018 22:29:42 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/libraries/String.php on line 92
+[24-Jan-2018 00:02:39 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 00:02:40 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 00:03:05 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 00:03:06 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 00:04:08 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 00:04:08 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare class Task in /home/smallvis/public_html/application/models/TaskGroup.php on line 98
+[24-Jan-2018 09:05:22 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/views/pages/task.php on line 12
+[24-Jan-2018 09:05:23 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/views/pages/task.php on line 12
+[24-Jan-2018 09:05:25 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/views/pages/task.php on line 12
+[24-Jan-2018 09:05:26 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}' in /home/smallvis/public_html/application/views/pages/task.php on line 12
+[24-Jan-2018 09:55:34 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/client.php on line 84
+[24-Jan-2018 09:56:24 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/client.php on line 84
+[24-Jan-2018 09:56:39 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/client.php on line 84
+[24-Jan-2018 10:12:20 America/Sao_Paulo] PHP Fatal error:  Function name must be a string in /home/smallvis/public_html/application/controllers/Pages.php on line 223
+[24-Jan-2018 10:19:20 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/smallvis/public_html/application/libraries/String.php on line 23
+[24-Jan-2018 10:19:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '=', expecting variable (T_VARIABLE) in /home/smallvis/public_html/application/libraries/String.php on line 23
+[24-Jan-2018 10:21:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/models/Task.php on line 79
+[24-Jan-2018 10:21:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/models/Task.php on line 79
+[24-Jan-2018 10:29:55 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 189
+[24-Jan-2018 10:29:55 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 189
+[24-Jan-2018 10:30:05 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/smallvis/public_html/application/controllers/Pages.php on line 189
+[24-Jan-2018 10:30:06 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ''' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/smallvis/public_html/application/controllers/Pages.php on line 451
+[24-Jan-2018 11:09:11 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Pages::team() in /home/smallvis/public_html/application/controllers/Pages.php on line 47
+[24-Jan-2018 11:28:20 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 452
+[24-Jan-2018 11:48:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:48:52 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:49:06 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:49:07 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:49:08 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:49:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 160
+[24-Jan-2018 11:49:14 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 453
+[25-Jan-2018 17:01:01 America/Sao_Paulo] PHP Fatal error:  Call to undefined method ProfileCompany::get() in /home/smallvis/public_html/application/controllers/Pages.php on line 19
+[25-Jan-2018 17:01:02 America/Sao_Paulo] PHP Fatal error:  Call to undefined method ProfileCompany::get() in /home/smallvis/public_html/application/controllers/Pages.php on line 19
+[25-Jan-2018 17:04:06 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfoByUserID() in /home/smallvis/public_html/application/controllers/Pages.php on line 154
+[25-Jan-2018 17:05:48 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/controllers/Pages.php on line 158
+[25-Jan-2018 17:06:11 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 7
+[25-Jan-2018 17:06:15 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 7
+[25-Jan-2018 17:07:55 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 55
+[25-Jan-2018 17:07:59 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 55
+[25-Jan-2018 17:08:15 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 55
+[25-Jan-2018 17:08:16 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/company.php on line 55
+[25-Jan-2018 17:08:59 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfo() in /home/smallvis/public_html/application/controllers/Pages.php on line 283
+[25-Jan-2018 17:09:22 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfo() in /home/smallvis/public_html/application/controllers/Pages.php on line 283
+[25-Jan-2018 17:10:35 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfo() in /home/smallvis/public_html/application/controllers/Pages.php on line 283
+[25-Jan-2018 17:10:37 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfoByUserID() in /home/smallvis/public_html/application/controllers/Pages.php on line 254
+[25-Jan-2018 17:11:27 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfo() in /home/smallvis/public_html/application/controllers/Pages.php on line 283
+[25-Jan-2018 17:11:48 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfo() in /home/smallvis/public_html/application/controllers/Pages.php on line 283
+[25-Jan-2018 17:11:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting ';' or '{' in /home/smallvis/public_html/application/controllers/Pages.php on line 473
+[25-Jan-2018 17:13:39 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Company::getInfoByUserID() in /home/smallvis/public_html/application/controllers/Pages.php on line 254
+[25-Jan-2018 17:20:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 19
+[25-Jan-2018 18:01:54 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';' in /home/smallvis/public_html/application/controllers/Pages.php on line 9
+[25-Jan-2018 18:02:06 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';' in /home/smallvis/public_html/application/controllers/Pages.php on line 9
+[25-Jan-2018 18:02:15 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 23
+[25-Jan-2018 18:02:55 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 23
+[25-Jan-2018 18:02:58 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 23
+[25-Jan-2018 18:03:30 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 23
+[25-Jan-2018 18:03:54 America/Sao_Paulo] PHP Fatal error:  Call to a member function getProjectByTaskId() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 404
+[25-Jan-2018 18:04:00 America/Sao_Paulo] PHP Fatal error:  Call to a member function getProjectByTaskId() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 404
+[25-Jan-2018 18:05:01 America/Sao_Paulo] PHP Fatal error:  Call to a member function getClientByProjectId() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 409
+[25-Jan-2018 18:07:43 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 612
+[25-Jan-2018 18:07:47 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 214
+[25-Jan-2018 18:07:52 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 247
+[25-Jan-2018 18:14:35 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCompanyIdByUsername() on null in /home/smallvis/public_html/application/models/Client.php on line 11
+[25-Jan-2018 18:18:00 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCompanyIdByUsername() on null in /home/smallvis/public_html/application/models/User.php on line 29
+[25-Jan-2018 21:06:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function createUserCompany() on null in /home/smallvis/public_html/application/models/User.php on line 87
+[25-Jan-2018 21:19:41 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$success4' (T_VARIABLE) in /home/smallvis/public_html/application/models/Task.php on line 97
+[25-Jan-2018 21:19:41 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$success4' (T_VARIABLE) in /home/smallvis/public_html/application/models/Task.php on line 97
+[25-Jan-2018 21:30:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 445
+[25-Jan-2018 22:31:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 445
+[25-Jan-2018 22:34:20 America/Sao_Paulo] PHP Fatal error:  Call to undefined function xml_encode() in /home/smallvis/public_html/application/controllers/Pages.php on line 621
+[25-Jan-2018 22:34:46 America/Sao_Paulo] PHP Fatal error:  Call to undefined function xml_encode() in /home/smallvis/public_html/application/controllers/Pages.php on line 621
+[25-Jan-2018 22:34:58 America/Sao_Paulo] PHP Fatal error:  Call to undefined function xml_encode() in /home/smallvis/public_html/application/controllers/Pages.php on line 621
+[26-Jan-2018 16:09:27 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/models/Task.php on line 160
+[26-Jan-2018 16:09:28 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/models/Task.php on line 160
+[26-Jan-2018 16:09:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/models/Task.php on line 160
+[26-Jan-2018 16:09:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/models/Task.php on line 160
+[26-Jan-2018 16:14:07 America/Sao_Paulo] PHP Fatal error:  Call to a member function createLog() on null in /home/smallvis/public_html/application/models/Task.php on line 155
+[26-Jan-2018 16:14:59 America/Sao_Paulo] PHP Fatal error:  Call to a member function createLog() on null in /home/smallvis/public_html/application/models/Task.php on line 155
+[26-Jan-2018 16:17:25 America/Sao_Paulo] PHP Fatal error:  Call to a member function createLog() on null in /home/smallvis/public_html/application/models/Task.php on line 155
+[26-Jan-2018 17:58:44 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/templates/header.php on line 270
+[26-Jan-2018 17:58:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/templates/header.php on line 270
+[28-Jan-2018 18:11:09 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 25
+[28-Jan-2018 18:11:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 25
+[28-Jan-2018 18:22:42 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/smallvis/public_html/application/views/templates/header.php on line 98
+[28-Jan-2018 18:22:43 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/smallvis/public_html/application/views/templates/header.php on line 98
+[29-Jan-2018 10:39:33 America/Sao_Paulo] PHP Fatal error:  Call to a member function dateTimeToString() on null in /home/smallvis/public_html/application/libraries/String.php on line 142
+[29-Jan-2018 10:40:19 America/Sao_Paulo] PHP Fatal error:  Call to a member function dateTimeToString() on null in /home/smallvis/public_html/application/libraries/String.php on line 142
+[29-Jan-2018 10:43:14 America/Sao_Paulo] PHP Fatal error:  Call to a member function getStringMax() on null in /home/smallvis/public_html/application/libraries/String.php on line 133
+[29-Jan-2018 10:43:17 America/Sao_Paulo] PHP Fatal error:  Call to a member function getStringMax() on null in /home/smallvis/public_html/application/libraries/String.php on line 133
+[29-Jan-2018 11:27:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 484
+[29-Jan-2018 11:47:03 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/task.php on line 259
+[29-Jan-2018 12:31:10 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/task.php on line 331
+[29-Jan-2018 15:28:38 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/smallvis/public_html/application/controllers/Pages.php on line 250
+[29-Jan-2018 15:28:39 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/smallvis/public_html/application/controllers/Pages.php on line 250
+[29-Jan-2018 16:03:05 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 329
+[29-Jan-2018 16:03:07 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 329
+[29-Jan-2018 16:03:08 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 329
+[29-Jan-2018 16:03:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 329
+[30-Jan-2018 17:35:18 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ''-';' (T_ENCAPSED_AND_WHITESPACE) in /home/smallvis/public_html/application/controllers/Pages.php on line 997
+[30-Jan-2018 18:01:54 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 1033
+[30-Jan-2018 19:38:48 America/Sao_Paulo] PHP Fatal error:  Call to undefined method User::existsByUsername() in /home/smallvis/public_html/application/models/User.php on line 105
+[30-Jan-2018 20:10:22 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 48
+[30-Jan-2018 20:10:22 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 48
+[30-Jan-2018 20:11:09 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 48
+[30-Jan-2018 20:11:09 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 48
+[30-Jan-2018 20:13:03 America/Sao_Paulo] PHP Fatal error:  Call to a member function getByUsername() on null in /home/smallvis/public_html/application/models/UserBasic.php on line 51
+[30-Jan-2018 20:13:04 America/Sao_Paulo] PHP Fatal error:  Call to a member function getByUsername() on null in /home/smallvis/public_html/application/models/UserBasic.php on line 51
+[30-Jan-2018 20:14:54 America/Sao_Paulo] PHP Fatal error:  Call to undefined function redirect() in /home/smallvis/public_html/application/controllers/Pages.php on line 1235
+[30-Jan-2018 20:16:00 America/Sao_Paulo] PHP Fatal error:  Call to undefined function redirect() in /home/smallvis/public_html/application/controllers/Pages.php on line 1239
+[30-Jan-2018 20:18:01 America/Sao_Paulo] PHP Fatal error:  Call to a member function checkLogin() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 1149
+[30-Jan-2018 20:37:46 America/Sao_Paulo] PHP Fatal error:  Call to a member function getName() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 176
+[30-Jan-2018 20:39:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function exists() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 1167
+[30-Jan-2018 20:59:50 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 258
+[30-Jan-2018 21:00:42 America/Sao_Paulo] PHP Fatal error:  Call to a member function exists() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 1214
+[30-Jan-2018 21:01:21 America/Sao_Paulo] PHP Fatal error:  Call to a member function getName() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 176
+[30-Jan-2018 21:01:23 America/Sao_Paulo] PHP Fatal error:  Call to a member function getName() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 176
+[30-Jan-2018 21:02:16 America/Sao_Paulo] PHP Fatal error:  Call to a member function getProjectTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 177
+[30-Jan-2018 21:21:50 America/Sao_Paulo] PHP Fatal error:  Call to a member function update() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 209
+[30-Jan-2018 21:55:29 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 377
+[30-Jan-2018 22:02:02 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 377
+[30-Jan-2018 22:06:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function getAll() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 377
+[30-Jan-2018 22:20:53 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 352
+[30-Jan-2018 23:02:39 America/Sao_Paulo] PHP Fatal error:  Call to a member function getProjectTasks() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 595
+[30-Jan-2018 23:21:42 America/Sao_Paulo] PHP Fatal error:  Call to a member function create() on null in /home/smallvis/public_html/application/models/TaskGroup.php on line 72
+[30-Jan-2018 23:25:45 America/Sao_Paulo] PHP Fatal error:  Call to a member function getByUsername() on null in /home/smallvis/public_html/application/models/Notification.php on line 48
+[30-Jan-2018 23:27:57 America/Sao_Paulo] PHP Fatal error:  Call to a member function create() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 885
+[30-Jan-2018 23:29:54 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 1007
+[30-Jan-2018 23:31:21 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/Task.php on line 224
+[30-Jan-2018 23:31:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/Task.php on line 224
+[30-Jan-2018 23:32:34 America/Sao_Paulo] PHP Fatal error:  Call to a member function create() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 904
+[30-Jan-2018 23:33:49 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/Task.php on line 237
+[30-Jan-2018 23:34:17 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/Task.php on line 237
+[30-Jan-2018 23:36:57 America/Sao_Paulo] PHP Fatal error:  Call to a member function create() on null in /home/smallvis/public_html/application/models/Task.php on line 257
+[30-Jan-2018 23:53:46 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/TaskGroup.php on line 122
+[30-Jan-2018 23:54:01 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/TaskGroup.php on line 122
+[30-Jan-2018 23:54:52 America/Sao_Paulo] PHP Fatal error:  Call to a member function create() on null in /home/smallvis/public_html/application/models/TaskGroup.php on line 187
+[30-Jan-2018 23:55:31 America/Sao_Paulo] PHP Fatal error:  Call to a member function createLog() on null in /home/smallvis/public_html/application/models/TaskGroup.php on line 156
+[03-Feb-2018 09:05:06 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 352
+[03-Feb-2018 09:05:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 352
+[03-Feb-2018 10:18:10 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare Pages::tasks() in /home/smallvis/public_html/application/controllers/Pages.php on line 818
+[03-Feb-2018 10:18:10 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare Pages::tasks() in /home/smallvis/public_html/application/controllers/Pages.php on line 818
+[03-Feb-2018 10:20:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 841
+[03-Feb-2018 10:20:38 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 841
+[06-Feb-2018 13:45:52 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/models/Project.php on line 98
+[06-Feb-2018 13:46:32 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Client::get() in /home/smallvis/public_html/application/models/Project.php on line 101
+[06-Feb-2018 14:16:31 America/Sao_Paulo] PHP Fatal error:  Call to undefined method UserBasic::getCurrentUser() in /home/smallvis/public_html/application/models/Project.php on line 98
+[06-Feb-2018 14:17:14 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCurrentUser() on null in /home/smallvis/public_html/application/models/Project.php on line 141
+[06-Feb-2018 14:18:02 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCurrentUser() on null in /home/smallvis/public_html/application/models/Project.php on line 160
+[06-Feb-2018 14:18:21 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCurrentUser() on null in /home/smallvis/public_html/application/models/Project.php on line 141
+[06-Feb-2018 14:28:44 America/Sao_Paulo] PHP Fatal error:  Call to a member function getCurrentUser() on null in /home/smallvis/public_html/application/models/Task.php on line 286
+[06-Feb-2018 15:15:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/smallvis/public_html/application/views/pages/updateProfile.php on line 53
+[06-Feb-2018 15:54:36 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/libraries/String.php on line 171
+[06-Feb-2018 15:54:36 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/libraries/String.php on line 171
+[06-Feb-2018 16:51:59 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/task.php on line 358
+[06-Feb-2018 17:23:07 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 1343
+[06-Feb-2018 17:23:07 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 1343
+[06-Feb-2018 17:23:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 1343
+[06-Feb-2018 17:23:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/smallvis/public_html/application/controllers/Pages.php on line 1343
+[06-Feb-2018 17:48:59 America/Sao_Paulo] PHP Fatal error:  Call to a member function result() on boolean in /home/smallvis/public_html/application/models/Client.php on line 179
+[07-Feb-2018 13:18:58 America/Sao_Paulo] PHP Fatal error:  Call to a member function get() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 355
+[07-Feb-2018 13:20:05 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/smallvis/public_html/application/controllers/Pages.php on line 465
+[07-Feb-2018 13:20:09 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasksByUserId() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 361
+[07-Feb-2018 13:20:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function getUserTasksByUserId() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 361
+[08-Feb-2018 14:09:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/templates/header.php on line 272
+[09-Feb-2018 10:23:27 America/Sao_Paulo] PHP Fatal error:  Call to a member function getByUsername() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 104
+[09-Feb-2018 10:31:16 America/Sao_Paulo] PHP Fatal error:  Call to a member function getByUsername() on null in /home/smallvis/public_html/application/libraries/Helper.php on line 104
+[15-Feb-2018 15:34:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[15-Feb-2018 15:34:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[15-Feb-2018 15:35:29 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[15-Feb-2018 15:35:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[15-Feb-2018 15:35:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[15-Feb-2018 15:35:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/views/templates/header.php on line 329
+[16-Feb-2018 10:54:36 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 1354
+[16-Feb-2018 13:18:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '";\n"' (T_CONSTANT_ENCAPSED_STRING) in /home/smallvis/public_html/application/libraries/String.php on line 133
+[16-Feb-2018 13:18:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '";\n"' (T_CONSTANT_ENCAPSED_STRING) in /home/smallvis/public_html/application/libraries/String.php on line 133
+[16-Feb-2018 13:18:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '";\n"' (T_CONSTANT_ENCAPSED_STRING) in /home/smallvis/public_html/application/libraries/String.php on line 133
+[16-Feb-2018 13:18:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '";\n"' (T_CONSTANT_ENCAPSED_STRING) in /home/smallvis/public_html/application/libraries/String.php on line 133
+[16-Feb-2018 17:15:41 America/Sao_Paulo] PHP Fatal error:  Call to a member function sub() on string in /home/smallvis/public_html/application/models/User.php on line 179
+[19-Feb-2018 16:53:25 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/project.php on line 357
+[19-Feb-2018 17:03:34 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/project.php on line 353
+[19-Feb-2018 17:15:10 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/project.php on line 366
+[19-Feb-2018 17:41:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:41:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:41:46 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:41:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:41:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:41:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/controllers/Pages.php on line 1281
+[19-Feb-2018 17:42:08 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 457
+[19-Feb-2018 17:42:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in /home/smallvis/public_html/application/views/pages/task.php on line 34
+[19-Feb-2018 17:42:11 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in /home/smallvis/public_html/application/views/pages/task.php on line 34
+[19-Feb-2018 17:42:41 America/Sao_Paulo] PHP Fatal error:  Call to undefined method Task::editTaskName() in /home/smallvis/public_html/application/controllers/Pages.php on line 1283
+[19-Feb-2018 17:44:11 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/models/Task.php on line 392
+[21-Feb-2018 14:45:34 America/Sao_Paulo] PHP Fatal error:  Call to a member function getTaskComments() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 846
+[21-Feb-2018 14:45:37 America/Sao_Paulo] PHP Fatal error:  Call to a member function getTaskComments() on null in /home/smallvis/public_html/application/controllers/Pages.php on line 846
+[21-Feb-2018 14:46:10 America/Sao_Paulo] PHP Fatal error:  Call to a member function dateTimeToString() on null in /home/smallvis/public_html/application/views/pages/task.php on line 150
+[21-Feb-2018 14:46:12 America/Sao_Paulo] PHP Fatal error:  Call to a member function dateTimeToString() on null in /home/smallvis/public_html/application/views/pages/task.php on line 150
+[21-Feb-2018 16:11:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 1092
+[21-Feb-2018 16:14:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ''authorId'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/smallvis/public_html/application/models/Attachment.php on line 37
+[21-Feb-2018 17:01:04 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/views/pages/task.php on line 375
+[21-Feb-2018 17:12:29 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 817
+[21-Feb-2018 17:12:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 817
+[21-Feb-2018 17:12:31 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 817
+[21-Feb-2018 17:12:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/smallvis/public_html/application/controllers/Pages.php on line 817
+[27-Feb-2018 09:55:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 457
+[27-Feb-2018 10:21:34 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/task.php on line 237
+[27-Feb-2018 10:21:35 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/task.php on line 237
+[27-Feb-2018 10:21:36 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type stdClass as array in /home/smallvis/public_html/application/views/pages/task.php on line 237
+[27-Feb-2018 12:35:34 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file, expecting ']' in /home/smallvis/public_html/application/controllers/Pages.php on line 1019
+[08-Mar-2018 10:05:11 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/smallvis/public_html/application/models/User.php on line 170
+[08-Mar-2018 10:05:14 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/smallvis/public_html/application/models/User.php on line 170
+[08-Mar-2018 10:59:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ''' (T_ENCAPSED_AND_WHITESPACE) in /home/smallvis/public_html/application/controllers/Pages.php on line 458
+[08-Mar-2018 10:59:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 1552
+[15-Mar-2018 10:43:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/smallvis/public_html/application/controllers/Pages.php on line 1091
+[15-Mar-2018 10:50:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';' in /home/smallvis/public_html/application/controllers/Pages.php on line 1120
+[15-Mar-2018 10:50:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';' in /home/smallvis/public_html/application/controllers/Pages.php on line 1120
+[15-Mar-2018 14:13:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')' in /home/smallvis/public_html/application/views/pages/tasks.php on line 13

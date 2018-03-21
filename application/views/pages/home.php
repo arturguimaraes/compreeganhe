@@ -1,188 +1,112 @@
-<!-- HEADER -->
+<!-- Full Calendar Imports -->
+<link href='/assets/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='/assets/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='/assets/fullcalendar/lib/moment.min.js'></script>
+<script src='/assets/fullcalendar/fullcalendar.min.js'></script>
+<script src='/assets/fullcalendar/locale/pt-br.js'></script>
+<!-- Calendar JavaScript -->
+<script src="assets/js/calendar.js" type="text/javascript" ></script>
 
-<!-- NAVIGATION -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-header" src="assets/img/logo_cg.png"></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#services">Como Funciona?</a>
-        </li>
-        <?php if(!$this->user->checkLogin()) { ?>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Entrar</a>
-            </li>
-        <?php } else { ?>
-        	<li class="nav-item">
-            <a class="nav-link" href="myaccount">Minha Conta</a>
-          </li>
-		<? } ?>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!-- Calendar Events -->
+<?=$this->string->addEventsToCalendar($clients, $user->id, $user->adminEditor)?>
 
-<!-- PAGE CONTENT -->
-<header class="masthead text-center text-white d-flex">
-  <div class="container my-auto">
-    <div class="row" style="padding-top: 50px;">
-      <div id="Caroulsel" class="col-md-12 carousel slide margin-top-50 margin-bottom-30" data-ride="carousel">
-        <div class="carousel-inner">
-          <?php for($i=1; $i <= $carrousel['count']; $i++) { ?>
-            <div class="carousel-item <?=($i==1 ? 'active' : '')?>">
-              <img class="d-block w-100 margin-auto" src="<?=$carrousel['url'] . $i . $carrousel['extension']?>" alt="Compre & Ganhe <?=$i?>">
-            </div>
-          <? } ?>
-        </div>
-        <a class="carousel-control-prev" href="#Caroulsel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#Caroulsel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Próximo</span>
-        </a>
-      </div>
+<style>
+  .btn-block+.btn-block {
+    margin-top:0;
+  }
+</style>
 
-      <div class="col-md-12"><a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a></div>
+<div class="row">
 
-      <!--<div class="col-md-4">
-        <h2 class="text-uppercase">
-          <strong>Quanto você ganha para indicar o supermercado onde faz compras?</strong>
-        </h2>
-        <hr>
-        <p class="text-faded">Já pensou em ganhar dinheiro consumindo arroz, feijão, açucar, café, etc.?<br>Torne-se um consumidor inteligente!</p>
-        <a class="btn btn-primary btn-xl js-scroll-trigger margin-bottom-20" href="#services">Saiba Como</a>
-      </div>
-      <div class="col-md-1"></div>-->
+	<div id="long-data-loader" class="margin-top-200 margin-top-150-desktop">
+		<div class="loader"></div>
+		<p class="italic text-gray text-align-center">Carregando dados...</p>
+	</div>
 
-    </div>
-  </div>
-</header>
+	<div id="long-data-container" class="hidden">
+		<div id="calendarDiv" class="col-md-12 display-table margin-bottom-50 padding-0" style="max-height: 400px;">
+		    <div class="col-md-12">
+		        <h1 class="page-header"><i class="fa fa-calendar"></i> Calendário</h1>
+		    </div>
+		    <!-- /.col-md-12 -->
+		    <div class="col-md-7 col-md-offset-2">
+		    	<div id="calendar"></div>
+	        </div>
+		    <!-- /.col-md-7 -->
+		    <div class="col-md-7 col-md-offset-2 margin-top-20">
+		    	<?php if(isset($_GET['complete']) && $_GET['complete']) { ?>
+	        		<div class="text-align-center"><a href="/">Esconder Tarefas Concluídas</a></div>
+	        	<?php } else { ?>
+	        		<div class="text-align-center"><a href="/?complete=true">Exibir Tarefas Concluídas</a></div>
+	        	<? } ?>
+	        </div>
+		    <!-- /.col-md-7 -->
+		</div>
+		<!-- /#calendarDiv -->
 
-<section class="bg-primary" id="services">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="section-heading text-white">Como Funciona?</h2>
-        <hr class="my-4 light">
-      </div>
-      <?php for($i=1; $i <= $images['count']; $i++) { ?>
-        <div class="col-md-4 col-6 margin-bottom-30">
-          <img class="w-100" src="<?=$images['url'] . $i . $images['extension']?>" alt="Saiba Como <?=$i?>">
-        </div>
-      <? } ?>  
-    </div>
-  </div>    
+		<div id="clientsDiv" class="col-lg-12 display-table margin-auto margin-bottom-50 padding-0">
+		    <div class="col-md-12">
+		        <h1 class="page-header"><i class="fa fa-folder-open"></i> Projetos</h1>
+		    </div>
+		    <!-- /.col-md-12 -->
+		    <?php foreach($clients as $client) { ?>
+			    <div class="col-md-12">
+			        <h4>
+			        	<i class="fa fa-user" style="color:#<?=$client['client']->color?>"></i>&nbsp;
+			        	<a href="client?id=<?=$client['client']->id?>"><?=$client['client']->code?> - <?=$client['client']->name?></a>&nbsp;
+			        	<a data-toggle="collapse" href="#collapse<?=$client['client']->id?>" role="button" aria-expanded="false" aria-controls="collapse<?=$client['client']->id?>" onclick="changeIcon(<?=$client['client']->id?>);">
+			        		<i id="icon<?=$client['client']->id?>" class="fa fa-caret-right"></i>
+			        	</a>
+			        </h4>
+					<div class="collapse " id="collapse<?=$client['client']->id?>">
+					  	<div class="card card-body">
+					  		<div class="table-responsive">
+						        <table class="table table-striped table-small-font">
+								  <thead>
+								    <tr>
+								      <th scope="col">Código</th>
+								      <th scope="col">Nome</th>
+								      <th scope="col">Criado por</th>
+								      <th scope="col">Criação</th>
+								      <th scope="col">Entrega</th>
+								      <th scope="col">Status</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								  	<?php if(count($client['projects']) > 0) {
+								  		foreach($client['projects'] as $project) { ?>
+								  			<tr>
+										      <th scope="row"><?=$project->code?></th>
+										      <td>
+		                                      	<a href="project?id=<?=$project->id?>">
+											  		<?=substr($project->title,0,20)?><?=strlen($project->title) > 20 ? '...' : ''?>
+		                                        </a>
+		                                      </td>
+										      <td><?=explode(' ',trim($project->adminUserName))[0]?></td>
+										      <td><?=$this->string->dateTimeToString($project->createDate)?></td>
+										      <td><?=$this->string->dateTimeToString($project->deliverDate)?></td>
+										      <td><?=$project->status?></td>
+										    </tr>
+								  		<?php }
+								  	} else { 
+					                    echo "<tr><td colspan=6 class='text-align-center'>Não há projetos para este cliente.</td></tr>";
+					                } ?>
+								  </tbody>
+								</table>
+							</div>
+					  	</div>
+					</div>
+			    </div>
+			    <!-- /.col-md-12 -->
+			<? } ?>
+		</div>
+		<!-- /#clientsDiv -->
+	</div>
+	<!-- /#long-data-container -->
 
-  <!--<div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="section-heading text-white">Um novo meio de ganhar dinheiro</h2>
-        <hr class="my-4 light">
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-md-6 text-center">
-        <div class="service-box mt-5 mx-auto text-white">
-          <i class="fa fa-4x fa-address-book mb-3 sr-icons text-white"></i>
-          <h3 class="mb-3">Indique Amigos</h3>
-        </div>
-      </div>
-      <div class="col-md-3 col-md-6 text-center">
-        <div class="service-box mt-5 mx-auto text-white">
-          <i class="fa fa-4x fa-address-card mb-3 sr-icons text-white"></i>
-          <h3 class="mb-3">Cadastro Via Link Único</h3>
-        </div>
-      </div>
-      <div class="col-md-3 col-md-6 text-center">
-        <div class="service-box mt-5 mx-auto text-white">
-          <i class="fa fa-4x fa-shopping-cart mb-3 sr-icons text-white"></i>
-          <h3 class="mb-3">Acompanhe o Faturamento de Sua Rede</h3>
-        </div>
-      </div>
-      <div class="col-md-3 col-md-6 text-center">
-        <div class="service-box mt-5 mx-auto text-white">
-          <i class="fa fa-4x fa-bank mb-3 sr-icons text-white"></i>
-          <h3 class="mb-3">Administre Seus Lucros</h3>
-        </div>
-      </div>
-    </div>
-  </div>-->
-</section>
+</div>
+<!-- /.row -->
 
-<section id="login" style="display:none;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 mx-auto text-center">
-        <h2 class="col-md-12 mb-5 section-heading">Já é cadastrado?</h2>
-        <a class="btn btn-light btn-xl js-scroll-trigger" href="login">Entrar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-md-8 mx-auto text-center">
-        <h2 class="section-heading">Contato</h2>
-        <hr class="my-4">
-        <p class="">Informe seus dados abaixo e entraremos em contato com você!</p>
-      </div>
-    </div>
-
-    <div class="row mb-5">
-      <form id="contactForm" class="form-horizontal col-md-4 margin-auto" method="post">
-        <div class="form-group">
-          <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Whatsapp" maxlength="15" required>
-        </div>
-        <div class="form-group" style="display:flex;">
-          <input type="submit" id="submit" name="submit" value="Enviar" class="btn btn-success margin-auto">
-        </div>
-      </form>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 ml-auto text-center">
-        <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
-        <p>(11) 2222-2222</p>
-      </div>
-      <div class="col-md-4 ml-auto text-center">
-        <i class="fa fa-facebook fa-3x mb-3 sr-contact"></i>
-        <p><a href="www.facebook.com/compreeganhe">Compre e Ganhe</a></p>
-      </div>
-      <div class="col-md-4 mr-auto text-center">
-        <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
-        <p><a href="mailto:contato@compreeganhe.net">contato@compreeganhe.net</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<?php if($contactEmail) { ?>
-  <script>
-    $(document).ready(function() {
-        setTimeout(function () {
-          alert("Obrigado por entrar em contato!\nRetornaremos em breve.");
-        }, 1000);
-    });
-  </script>
-<? } ?>
-
-<!-- FOOTER -->   
+<div id="event-modals">
+</div>
+<!-- /#event-modals -->

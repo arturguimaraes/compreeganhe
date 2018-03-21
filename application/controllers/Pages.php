@@ -19,6 +19,9 @@ class Pages extends CI_Controller {
 		$user->names = explode(' ',trim($user->name));
 		//Pega a cor da graduação do usuário
 		$user->color = $this->util->getGraduationColor($user->graduation);
+		//Verifica mensagens
+		$user->unreadMessagesCount = $this->message->countUnread($user->id);
+		$user->unreadMessages = $user->unreadMessagesCount > 0 ? "<span class=\"unread-messages\">$user->unreadMessagesCount</span>" : "";
 		return $user;
 	}
 	
@@ -95,6 +98,9 @@ class Pages extends CI_Controller {
 				break;			
 			case 'password':
 				$data = $this->password($data);
+				break;		
+			case 'withdraw':
+				$data = $this->withdraw($data);
 				break;
 			default:
 				$this->helper->loadErrorPage();
@@ -136,9 +142,6 @@ class Pages extends CI_Controller {
 			//Atualiza os dados do usuário logado
 			$data['user'] = $this->getUserData();
 		}
-		//Verifica mensagens
-		$unreadMessages = $this->message->countUnread($data['user']->id);
-		$data['user']->unreadMessages = $unreadMessages > 0 ? "<span class=\"unread-messages\">$unreadMessages</span>" : "";
 		return $data;
 	}
 
@@ -214,7 +217,7 @@ class Pages extends CI_Controller {
 			//Erro ao criar no banco de dados
 			else {
 				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'Não foi possível cadastrar o usuário. Tente novamente.');
-				var_dump($_POST);
+				//var_dump($_POST);
 			}
 		}
 		//Carrega a página		
@@ -244,11 +247,16 @@ class Pages extends CI_Controller {
 		$data['page']['url'] = 'myorders';
 		//Se for filtrado
 		if(isset($_POST['filter'])) {
-			$orderFilter = isset($_GET['order']) && $_GET['order'] != "" ? "&order=" . $_GET['order'] : ""; 
-    		$dateStartFilter = isset($_GET['dateStart']) && $_GET['dateStart'] != "" ? "&dateStart=" . urlencode($_GET['dateStart']) : "";   
+			/*$orderFilter = isset($_GET['order']) && $_GET['order'] != "" ? "&order=" . $_GET['order'] : "";
+    		$dateStartFilter = isset($_GET['dateStart']) && $_GET['dateStart'] != "" ? "&dateStart=" . urlencode($_GET['dateStart']) : "";
     		$dateEndFilter = isset($_GET['dateEnd']) && $_GET['dateEnd'] != "" ? "&dateEnd=" . urlencode($_GET['dateEnd']) : "";
-    		$dateSubmitFilter = isset($_GET['submit']) && $_GET['submit'] == "submit" ? "&submit=" . $_GET['submit'] : ""; 
-    		redirect("/export?content=myorders" . $orderFilter . $dateStartFilter . $dateEndFilter . $dateSubmitFilter);
+    		$dateSubmitFilter = isset($_GET['submit']) && $_GET['submit'] == "submit" ? "&submit=" . $_GET['submit'] : "";
+    		redirect("/export?content=myorders" . $orderFilter . $dateStartFilter . $dateEndFilter . $dateSubmitFilter);*/
+    		$statusFilter1 = isset($_GET['aprovado']) ? "&aprovado=on" : "";
+    		$statusFilter2 = isset($_GET['cancelado']) ? "&cancelado=on" : "";
+    		$statusFilter3 = isset($_GET['aguardando']) ? "&aguardando=on" : "";
+    		$statusFilter4 = isset($_GET['enviado']) ? "&enviado=on" : "";
+    		redirect("/export?content=myorders" . $statusFilter1 . $statusFilter2 . $statusFilter3 . $statusFilter4); 
 		}
 		//Pega o extrato do usuário logado
 		$data['orders'] = $this->util->orderOrderArray($this->order->getAll($data['user']->id));
@@ -289,8 +297,17 @@ class Pages extends CI_Controller {
 		//Informações da Página
 		$data['page']['title'] = 'Meu Extrato';
 		$data['page']['url'] = 'mybudget';
+		//Se for filtrado
+		if(isset($_POST['filter'])) {
+			$dateStartFilter = isset($_GET['dateStart']) && $_GET['dateStart'] != "" ? "&dateStart=" . urlencode($_GET['dateStart']) : "";
+    		$dateEndFilter = isset($_GET['dateEnd']) && $_GET['dateEnd'] != "" ? "&dateEnd=" . urlencode($_GET['dateEnd']) : "";
+    		$typeFilter1 = isset($_GET['direta']) ? "&direta=on" : "";
+    		$typeFilter2 = isset($_GET['indireta']) ? "&indireta=on" : "";
+    		$typeFilter3 = isset($_GET['graduacao']) ? "&graduacao=on" : "";
+    		redirect("/export?content=mybudget" . $dateStartFilter . $dateEndFilter . $typeFilter1 . $typeFilter2 . $typeFilter3); 
+		}
 		//Pega o extrato do usuário logado
-		$data['transactions'] = $this->transaction->getAll($data['user']->id);
+		$data['transactions'] = $this->util->orderTransactionArray($this->transaction->getAll($data['user']->id));
 		//Calcula o total
 		$data['total'] = 0;
 		foreach($data['transactions'] as $transaction)
@@ -457,7 +474,7 @@ class Pages extends CI_Controller {
 		if(!isset($_GET['sent'])) {
 			$data['sent'] = false;
 			//Informações da Página
-			$data['page']['title'] = 'Mensagens';
+			$data['page']['title'] = 'Mensagens' . ($data['user']->unreadMessagesCount > 0 ? (" (" . $data['user']->unreadMessagesCount . ")") : "");
 			//Pega todas as mensagens do usuário
 			$data['messages'] = $this->message->getAll($data['user']->id);
 		}
@@ -575,6 +592,14 @@ class Pages extends CI_Controller {
 					$data = $this->helper->sendMessage($data, 'password', NULL, false, 'Ocorreu um erro. Tente novamente.');
 			}
 		}
+		return $data;
+	}
+
+	//Página e saque
+	public function withdraw($data) {
+		//Informações da Página
+		$data['page']['title'] = 'Saque';
+		$data['page']['url'] = 'withdraw';
 		return $data;
 	}
 	

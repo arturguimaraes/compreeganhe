@@ -47,7 +47,7 @@ class Util {
 	    		return -1;
 	    	return strtotime($a['user']->userPaymentDate) > strtotime($b['user']->userPaymentDate);
 		}
-		//Order by create date
+		//Order by create date ASC
 		function cmpCreateDate($a, $b) {
 	    	return strtotime($a['user']->createDate) > strtotime($b['user']->createDate);		
 		}
@@ -63,23 +63,106 @@ class Util {
 	}
 
 	public function orderOrderArray($array) {
-		//Order by name
-		function cmpReference($a, $b) {
-	    	return strcmp(strtolower($a->reference), strtolower($b->reference));
-	    }
-		//Order by create date
+		//Order by create date DESC
+		function cmpCreateDate($a, $b) {
+	    	return strtotime($a->createDate) < strtotime($b->createDate);		
+		}
+		
+		//Inicialize empty array
+		$newArray = array();
+		
+		//Todos
+		if((!isset($_GET['aprovado']) && !isset($_GET['cancelado']) && !isset($_GET['aguardando']) && !isset($_GET['enviado'])) || isset($_GET['todos']))
+			$newArray = $array;
+		//Filtrar por status
+		else {
+			if(isset($_GET['aprovado']) && $_GET['aprovado'] == 'on')
+				foreach($array as $order)
+					if($order->status == "Aprovado")
+						array_push($newArray, $order);
+			if(isset($_GET['cancelado']) && $_GET['cancelado'] == 'on')
+				foreach($array as $order)
+					if($order->status == "Cancelado")
+						array_push($newArray, $order);
+			if(isset($_GET['aguardando']) && $_GET['aguardando'] == 'on')
+				foreach($array as $order)
+					if($order->status == "Aguardando Pagto")
+						array_push($newArray, $order);
+			if(isset($_GET['enviado']) && $_GET['enviado'] == 'on')
+				foreach($array as $order)
+					if($order->status == "Enviado ao PagSeguro")
+						array_push($newArray, $order);
+		}
+
+		//Ordena por createDate
+		usort($newArray, "cmpCreateDate");
+
+		return $newArray;
+	}
+
+	public function orderTransactionArray($array) {
+		//Order by create date ASC
 		function cmpCreateDate($a, $b) {
 	    	return strtotime($a->createDate) > strtotime($b->createDate);		
 		}
+		
+		//Inicialize empty array
+		$newArray = array();
+		
+		//Todos
+		if((!isset($_GET['direta']) && !isset($_GET['indireta']) && !isset($_GET['graduacao'])) || isset($_GET['todos']))
+			$newArray = $array;
+		//Filtrar por status
+		else {
+			if(isset($_GET['direta']) && $_GET['direta'] == 'on')
+				foreach($array as $transaction)
+					if((strpos($transaction->action, 'DIRETO') !== false) && (strpos($transaction->action, 'INDIRETO') === false))
+						array_push($newArray, $transaction);
+			if(isset($_GET['indireta']) && $_GET['indireta'] == 'on')
+				foreach($array as $transaction)
+					if((strpos($transaction->action, 'INDIRETO') !== false))
+						array_push($newArray, $transaction);
+			if(isset($_GET['graduacao']) && $_GET['graduacao'] == 'on')
+				foreach($array as $transaction)
+					if((strpos($transaction->action, 'Graduação') !== false))
+						array_push($newArray, $transaction);
+		}
 
+		//Inicialize empty array
+		$newDateArray = array();		
+
+		if((!isset($_GET['dateStart']) && !isset($_GET['dateEnd'])) || $_GET['dateStart'] == "" || $_GET['dateEnd'] == "")
+			$newDateArray = $newArray;
+		//Verifica datas
+		else if (isset($_GET['dateStart']) && $_GET['dateStart'] != "" && isset($_GET['dateEnd']) && $_GET['dateEnd'] != "") {
+			foreach($newArray as $transaction) {
+				$createDate = strtotime($this->dateTimeToDate($transaction->createDate));
+				$dateStart = strtotime($_GET['dateStart']);
+				$dateEnd = strtotime($_GET['dateEnd']);
+				if($createDate >= $dateStart && $createDate <= $dateEnd)
+					array_push($newDateArray, $transaction);
+			}
+		}
+
+		//Ordena por createDate
+		usort($newDateArray, "cmpCreateDate");
+
+		return $newDateArray;
+
+		//Order by name
+		/*function cmpReference($a, $b) {
+	    	return strcmp(strtolower($a->reference), strtolower($b->reference));
+	    }
+	    //Order by create date
+		function cmpCreateDate($a, $b) {
+	    	return strtotime($a->createDate) > strtotime($b->createDate);		
+		}
 		if(isset($_GET['order']) && $_GET['order'] == 'reference')
 			usort($array, "cmpReference");
 		else if(isset($_GET['order']) && $_GET['order'] == 'createDate')
-			usort($array, "cmpCreateDate");
-
-		return $array;
+			usort($array, "cmpCreateDate");*/
 	}
-	
+
 	public function orderOrderArrayByName($array) {
 		//Order by name
 		function cmpName($a, $b) {
@@ -104,6 +187,15 @@ class Util {
 		if($dateString == NULL || $dateString == "")
 			return NULL;
 		return substr($dateString, -4) . '-' . substr($dateString, -7, 2) . '-' . substr($dateString, -10, 2);
+	}
+
+	public function dateTimeToDate($dateTime) {
+		if($dateTime == NULL || $dateTime == "")
+			return "";
+		$year = substr($dateTime, 0, 4);
+		$month = substr($dateTime, 5, 2);
+		$day = substr($dateTime, 8, 2);
+		return $day . '-' . $month . '-' . $year;
 	}
 
 	//Gets total space

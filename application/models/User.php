@@ -66,6 +66,15 @@ class User extends CI_Model {
 		return array();
 	}
 
+	public function getAllIDs() {
+		$query = "SELECT id
+				  FROM user";
+		$result = $this->db->query($query)->result();
+		if(count($result) > 0) 
+			return $result;
+		return array();
+	}
+
 	public function getUserByEmail($email) {
 		$query = "SELECT *
 				  FROM user
@@ -289,6 +298,10 @@ class User extends CI_Model {
 					  estadoCivil = '$data->estadoCivil',
 					  motherName = '$data->motherName',
 					  fatherName = '$data->fatherName',
+					  sexo = '$data->sexo',
+					  escolaridade = '$data->escolaridade',
+					  pis = '$data->pis',
+					  profissao = '$data->profissao',
 					  updateDate = '$updateDate'
 					  WHERE username = '$username'";
 			

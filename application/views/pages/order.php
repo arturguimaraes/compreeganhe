@@ -13,7 +13,7 @@
         <p><b>Registro:</b> <?=$this->util->dateTimeToString($order->createDate)?></p>
         <p><b>Última Atualização:</b> <?=$this->util->dateTimeToString($order->updateDate)?></p>
         <p><b>Valor:</b> R$ <?=number_format($order->total, 2, ',', '')?></p>
-        <p><b>Status:</b><span style="padding: 0 5px; <?=$order->backgroundColor?>"><?=$order->status?></span></p>
+        <p><b>Status:</b> <span style="padding: 0 5px; <?=$order->backgroundColor?>"><?=$order->status?></span></p>
       </div>
     </div>
     <div>

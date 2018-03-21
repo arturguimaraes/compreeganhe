@@ -15,7 +15,7 @@
               <? if (isset($messages) && isset($messages['login'])) { ?>
                 <div class="col-md-12 <?=$messages['login']['messageClass']?> italic margin-bottom-20 text-align-center"><?=$messages['login']['message']?></div>
               <? } ?>
-              <div class="col-md-12">
+              <div class="col-md-12 no-padding">
                 <div class="col-md-12"><p>Digite a palavra abaixo:</p></div>
                 <div class="col-md-12 margin-bottom-10 captcha">
                     <?php echo $captcha['image']; ?>
@@ -24,7 +24,7 @@
                   <div class="col-md-12 <?=$messages['captcha']['messageClass']?> italic margin-bottom-20 text-align-center"><?=$messages['captcha']['message']?></div>
                 <? } ?>
                 <div class="col-md-12 margin-bottom-20">
-                  <input type="text" class="form-control" name="captcha" value=""/>
+                  <input type="text" class="form-control" name="captcha" value="" required/>
                 </div>
               </div>
               <div class="col-md-12">

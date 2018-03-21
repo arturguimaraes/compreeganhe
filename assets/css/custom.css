@@ -1,8 +1,3 @@
-/* Cores principais:
-	Verde Claro -> #a6cf4b
-	Verde Escuro -> #305231
-	Escuro (Menu) -> #212529
-*/
 
 html {
 	height: auto;
@@ -25,7 +20,8 @@ html {
 
 #mainNav.navbar-shrink {
 	border-bottom: 1px solid rgba(33,37,41,.1);
-	background: linear-gradient(to right, #a6cf4b, #305231);
+	/*background: linear-gradient(to right, #a6cf4b, #305231);*/
+	background: #8bb530;
 }
 
 #mainNav .navbar-brand {
@@ -39,6 +35,8 @@ html {
 #mainNav .navbar-nav>li.nav-item>a.nav-link, 
 #mainNav .navbar-nav>li.nav-item>a.nav-link:focus {
 	color: rgba(33,37,41,.9);
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 #mainNav .navbar-nav>li.nav-item>a.nav-link.active, 
@@ -51,17 +49,17 @@ html {
 	color: white !important;
 }
 
-#navbarResponsive {
-	margin-left: 5vw;
-}
-
 #navbar-rank {
 	background: #fff;
 	border-radius:30px;
 	border:1px solid black;
 	padding: 8px 10px !important; 
-	width: 100px;
+	width: 120px;
 	text-align: center;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+	font-size: 1rem;
 }
 
 .bg-primary {
@@ -130,6 +128,7 @@ a:hover, a:focus, a:active {
 	top: 0;
 	left: 0;
 	background: white;
+	background: transparent;
 }
 
 .btn-primary {
@@ -274,6 +273,10 @@ header.masthead {
 	font-style: italic;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 /************** TEXT BACKGROUND ******************/
 .background-green {
 	background: lightgreen;
@@ -408,7 +411,15 @@ header.masthead {
 	margin-right: 40px;
 }
 
+.btn-block+.btn-block {
+	margin-top: 0;
+}
+
 /******************** PADDING ********************/
+.no-padding {
+	padding: 0;
+}
+
 .padding-top-100 {
 	padding-top: 100px;
 }
@@ -420,12 +431,25 @@ header.masthead {
 /******************** BORDER ********************/
 .border-right-gray {
 	border-right: 1px solid gray;
-}   
+}
+
+/******************** OTHER ********************/
+
+.check-box-container {
+	margin-right: 10px;
+}
+
+#dateStart, #dateEnd {
+	width: 150px;
+	display: initial;
+}
 
 /******************** MOBILE CONFIGURATIONS ********************/
 @media (max-width: 991px) {
 	#mainNav {
 		height: auto;
+		border: none !important;
+		background-color: transparent !important;
 	}
 
 	#page-content {
@@ -433,7 +457,9 @@ header.masthead {
 	}
 	
 	.img-header {
-		height: 57px;		
+		height: 57px;
+		background: transparent;
+		margin-left: 5px;
 	}
 	
 	header.masthead {
@@ -444,17 +470,28 @@ header.masthead {
 	#navbarResponsive {
 		margin-top: 9px;
 	}
+
+	#navbarResponsive.show{
+		background: #8bb530;
+	    margin-left: -15px;
+	    padding-left: 30px;
+	    margin-right: -16px;
+	    padding-right: 31px;
+	    padding-top: 60px;
+    	margin-top: -48px;
+	}
 	
 	.navbar-light .navbar-toggler {
 		border-color: rgba(0,0,0,.3);
+		z-index: 9999999;
 	}
 	
 	.navbar-light.navbar-shrink .navbar-toggler {
-		border-color: white;
+		border-color: black;
 	}
 	
 	.navbar-light.navbar-shrink .navbar-toggler-icon {
-		background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgb(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+		background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 	}
 
 	.dropdown-toggle {
@@ -511,14 +548,20 @@ header.masthead {
 		display: block;
 		width: 100%;
 	}
+
+	#dateStart, #dateEnd {
+		width: auto;
+	}
 }
 
+/******************** DESKTOP ********************/
 @media (min-width: 992px) {
 	 .message-buttom-margin {
 	 	margin-right: 30px;
 	 }
 }
 
+/******************** HIDDEN ********************/
 .hidden {
 	display: none;
 }

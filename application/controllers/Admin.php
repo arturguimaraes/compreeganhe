@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model(array('product','tax','adminModel','order','transaction','orderProduct','user'));
+		$this->load->model(array('product','tax','adminModel','order','transaction','orderProduct','user','message'));
 		$this->load->helper(array('url'));
 		$this->load->library(array('helper','util'));
 	}
@@ -215,6 +215,25 @@ class Admin extends CI_Controller {
 			$user->firstName = explode(' ',trim($user->name))[0];
 		}
 		$this->load('users', $data);
+	}
+
+	//Função de envio de mensagem de usuários
+	public function messages()	{
+		//Verificar Login
+		if(!$this->adminModel->checkLogin()) {
+			redirect('adminLogin');
+			return;
+		}
+		//Informações da página
+		$data['page']['title'] = "Compre & Ganhe - Administração - Enviar Mensagens aos Usuários";
+		//Envia mensagem
+		if(isset($_POST['submit'])) {
+			if($this->message->sendToAll($_POST['message']))
+				$data = $this->helper->sendMessage($data, 'message', NULL, true, 'Mensagem enviada com sucesso.');
+			else
+				$data = $this->helper->sendMessage($data, 'message', NULL, false, 'Erro ao enviar mensagem.');
+		}
+		$this->load('messages', $data);
 	}
 	
 	public function login() {			

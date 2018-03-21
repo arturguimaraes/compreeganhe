@@ -64,6 +64,7 @@ $route['adminAddProduct'] 	= 'admin/add';
 $route['adminLogin']	 	= 'admin/login';
 $route['adminOrders']	 	= 'admin/orders';
 $route['adminUsers']	 	= 'admin/users';
+$route['adminMessages']	 	= 'admin/messages';
 
 // NOT PAGED ROUTES
 $route['login'] 			= 'pages/login';
@@ -97,6 +98,8 @@ $route['deleteMessage'] 	= 'pages/deleteMessage';
 $route['deleteAllMessages'] = 'pages/deleteAllMessages';
 $route['rank'] 				= 'pages/load/rank';
 $route['password'] 			= 'pages/load/password';
+$route['pay'] 				= 'pages/load/pay';
+$route['withdraw'] 			= 'pages/load/withdraw';
 
 // ERROR PAGE ROUTE
 $route['(:any)']			= 'pages/error';

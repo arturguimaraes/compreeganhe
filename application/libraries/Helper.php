@@ -1,54 +1,72 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Helper {
-
+		
 	protected $CI;
-
+	
 	public function __construct() {
 		// Assign the CodeIgniter super-object
 		$this->CI =& get_instance();
 	}
 	
-	//Loads pages with templates
-	public function loadPage($data) {
+	public function loadPage($data, $templates = true) {
 		//Loads header
-		$this->CI->load->view('templates/header', $data);
-
-		//Loads navbar
-		if($data['page']['url'] != 'home' && $data['page']['url'] != 'login')
-			$this->CI->load->view('templates/navbar', $data);	
-		
+		if ($templates)
+			$this->CI->load->view('templates/header', $data);
 		//Loads page
 		$this->CI->load->view('pages/' . $data['page']['url'], $data);
-		$this->CI->load->view('templates/footer', $data);
+		//Loads footer
+		if ($templates)
+			$this->CI->load->view('templates/footer', $data);
 	}
-
-	//Loads error page
-	public function loadErrorPage($data = NULL) {
-		if($data = NULL)
-			$data = array();
+	
+	public function loadErrorPage($data) {
 		$data['page']['title'] = 'Página não encontrada';
 		$data['heading'] = "Página não encontrada";
-		$data['message'] = "A página desejada não foi encontrada.<br>Por favor, retorne à página inicial clicando <a href='" . base_url() . "myaccount'>aqui</a>.";
+		$data['message'] = "A página desejada não foi encontrada.<br>Por favor, retorne à página inicial clicando <a href='" . base_url() . "'>aqui</a>.";
 		$this->CI->load->view('templates/header', $data);
-		//$this->CI->load->view('templates/navbar', $data);
 		$this->CI->load->view('errors/cli/error_general', $data);
 		$this->CI->load->view('templates/footer', $data);
 	}
 	
-	//Loads database error page
-	public function loadDatabaseErrorPage($data = NULL) {
-		if($data = NULL)
-			$data = array();
-		$data['page']['title'] = 'Erro';
-		$this->CI->load->view('templates/header', $data);
-		//$this->CI->load->view('templates/navbar', $data);
-		$this->CI->load->view('errors/cli/error_database', $data);
-		$this->CI->load->view('templates/footer', $data);
+	//Gets field from $_POST
+	public function get($field) {
+		if(isset($_POST[$field]) && $_POST[$field] != NULL)
+			return $_POST[$field];
+		if(isset($_GET[$field]) && $_GET[$field] != NULL)
+			return $_GET[$field];
+		return "";
 	}
 
-	//Envia mensagem para a página
+	//Gets field from $_POST OR a given value
+	public function getOrValue($field, $givenValue = "") {
+		if(isset($_POST[$field]) && $_POST[$field] != NULL && $_POST[$field] != "")
+			return $_POST[$field];
+		if(isset($_GET[$field]) && $_GET[$field] != NULL && $_GET[$field] != "")
+			return $_GET[$field];
+		return $givenValue;
+	}
+	
+	//Converts array into object
+	public function arrayToObject($array) {
+		return (object) $array;
+	}
+
+	//Converts object into array
+	public function objectToArray($object) {
+		return (array) $object;
+	}
+	
+	//Converte Datetime para data visível ao usuário
+	public function dateTimeToString($dateTime) {
+		$year = substr($dateTime, 0, 4);
+		$month = substr($dateTime, 5, 2);
+		$day = substr($dateTime, 8, 2);
+		$time = substr($dateTime, -8, 5);
+		return $day.'/'.$month.'/'.$year.' '.$time;
+	}
+
+	//Sends message to view
 	public function sendMessage($data, $id, $label, $success, $customizedMessage = NULL) {
 		$messageClass = $success ? 'text-green' : 'text-red';
 		if ($customizedMessage == NULL)
@@ -60,67 +78,87 @@ class Helper {
 		return $data;
 	}
 
-	//Função básica de envio de e-mails
-	public function sendEmail($to, $subject, $message) {
-		$headers = 'From: no-reply@compreeganhe.net' . "\r\n" .
-				   'Reply-To: no-reply@compreeganhe.net' . "\r\n" .
-				   'Content-Type: text/html; charset=UTF-8' . "\r\n" .
-				   'X-Mailer: PHP/' . phpversion();
-		return mail($to, $subject, $message, $headers);
+	//Sends system messages
+	public function sendSystemMessage($message, $class) {
+		if(isset($_SESSION['messages']) && $_SESSION['messages'] != NULL && count($_SESSION['messages']) > 0)
+			array_push($_SESSION['messages'], array('message' => $message, 'class' => $class));
+		else
+			$_SESSION['messages'] = array(array('message' => $message, 'class' => $class));
 	}
 
-	//Envia e-mail de contato da página HOME
-	public function sendContactEmail($data, $post) {
-		$to      = 'josimarsigt@gmail.com';
-		//$to      = 'arturguimaraes92@hotmail.com'; //Teste
-		$subject = 'CONTATO - COMPRE & GANHE: Usuário deseja entrar para rede!';
-		$message = "<b>" . $post['nome'] . "</b> entrou em contato pelo site do Compre & Ganhe.<br><br>" .
-				   "Favor retornar com o representante mais próximo.<br><br><br>" . 
-				   "<b>Nome:</b> " . $post['nome'] . "<br>" . 
-				   "<b>E-mail:</b> " . $post['email'] . "<br>" . 
-				   "<b>Whatsapp:</b> " . $post['telefone'] . "<br><br>" .
-				   "Atenciosamente,<br><br><a href='http://www.compreeganhe.net'>Compre & Ganhe</a>";
-		$data['contactEmail'] = $this->sendEmail($to, $subject, $message);
+	//Gets system messages
+	public function getSystemMessages() {
+		if(isset($_SESSION['messages']) && $_SESSION['messages'] != NULL && count($_SESSION['messages']) > 0)
+			$messages = $_SESSION['messages'];
+		else
+			$messages = array();
+		$_SESSION['messages'] = array();
+		return $messages;
+	}
+
+	//Sends e-mails
+	public function sendEmail($to, $subject, $message, $user) {
+		if($user != NULL && $user->emailNotification == 'sim') {
+			$headers = 'From: no-reply@smallvisor.com' . "\r\n" .
+					   'Reply-To: no-reply@smallvisor.com' . "\r\n" .
+					   'Content-Type: text/html; charset=UTF-8' . "\r\n" .
+					   'X-Mailer: PHP/' . phpversion();
+			$signature = "<br><br>Atenciosamente,<br><br><a href='" . base_url() . "'>Equipe SmallVisor</a>.";
+			$message .= $signature;
+			return mail($to, $subject, $message, $headers);
+		}
+		else
+			return true;
+	}
+
+	//Sends signup e-mail
+	public function sendSignUpEmail($name, $username, $password, $email) {
+		$subject = 'SmallVisor: Você se cadastrou no SmallVisor!';
+		$message = "Parabéns <b>$name</b>!<br><br>" .
+				   "Você realizou o cadastro no nosso sistema com os seguintes dados de acesso:<br><br>" . 
+				   "<b>Usuário:</b> $username<br>" . 
+				   "<b>Senha:</b> $password<br><br>" .
+				   "Este e-mail é confidencial. Não repasse essa senha para terceiros.";
+		$user = $this->CI->userBasic->getByUsername($username);
+		return $this->sendEmail($email, $subject, $message, $user);
 	}
 	
-	//Envia e-mail de confirmação de cadastro
-	public function sendSignUpEmail($name, $username, $password, $email) {
-		$to = $email;
-		$subject = 'CADASTRO - COMPRE & GANHE: Você se cadastrou no Compre & Ganhe! Finalize sua inscrição!';
-		$message = "Parabéns <b>" . $name . "</b>!<br><br>" .
-				   "Você realizou o cadastro no nosso sistema.<br>Seus dados:<br><br><br>" . 
-				   "<b>Usuário:</b> " . $username . "<br>" . 
-				   "<b>Senha:</b> " . $password . "<br><br><br>" .
-				   "Este e-mail é confidencial! Não repasse essa senha para terceiros.<br><br>" .
-				   'Agora falta apenas realizar o pagamento da sua inscrição, clicando <a href="http://www.compreeganhe.net/product?id=1">aqui</a>.<br><br>' .
-				   "Não perca tempo! Finalize sua inscrição em breve para poder usufruir dos lucros montando sua própria rede!<br><br><br>" . 
-				   "Atenciosamente,<br><br><a href='http://www.compreeganhe.net'>Compre & Ganhe</a>";
-		return $this->sendEmail($to, $subject, $message);
-	}
-
 	//Envia e-mail de mudança de senha
 	public function sendChangePasswordEmail($user, $password) {
 		$to = $user->email;
-		$subject = 'SENHA - COMPRE & GANHE: Você modificou sua senha.';
+		$subject = 'SmallVisor: Você modificou sua senha.';
 		$message = "Prezado <b>$user->name</b>,<br><br>" .
-				   "Você realizou a mudança de senha no Compre & Ganhe.<br>Seus dados:<br><br><br>" . 
+				   "Você realizou a mudança de senha no SmallVisor.<br>Seus novos dados de acesso:<br><br>" . 
 				   "<b>Usuário:</b> $user->username<br>" . 
-				   "<b>Nova Senha:</b> $password<br><br><br>" .
-				   "Este e-mail é confidencial! Não repasse essa senha para terceiros.<br><br>" .
-				   "Atenciosamente,<br><br><a href='http://www.compreeganhe.net'>Compre & Ganhe</a>";
-		return $this->sendEmail($to, $subject, $message);
+				   "<b>Nova Senha:</b> $password<br><br>" .
+				   "Este e-mail é confidencial! Não repasse essa senha para terceiros.";
+		return $this->sendEmail($to, $subject, $message, $user);
 	}
 
-	//Envia e-mail de graduação
-	public function sendGraduationEmail($user, $graduation) {
-		$to = $user->email;
-		$subject = "GRADUAÇÃO - COMPRE & GANHE: Você foi promovido ao nível $graduation!";
-		$message = "Parabéns!<br><br>" .
-				   "Você foi promovido ao nível <b>$graduation</b>!<br>" .
-				   "Acesse seu <a href='http://www.compreeganhe.net/mybudget'>extrato</a> para conferir o bônus.<br>" . 
-				   "Não perca tempo! Continue indicando mais pessoas e fortalecendo sua rede para crescer mais e alcançar outras bonificações!<br><br>" . 
-				   "Atenciosamente,<br><br><a href='http://www.compreeganhe.net'>Compre & Ganhe</a>";
-		return $this->sendEmail($to, $subject, $message);
+	//Sends new task e-mail
+	public function sendNewTaskEmail($user, $task) {
+		$email 	 = $user->email;
+		$subject = 'SmallVisor: Você tem uma nova tarefa!';
+		$message = "Prezado <b>$user->name</b>,<br><br>" .
+				   "Uma nova tarefa foi criada e atribuída à você:<br><br>" . 
+				   "<b>Título:</b> $task->code: $task->title<br>" . 
+				   "<b>Data de Entrega:</b> " . $this->dateTimeToString($task->deliverDate) . "<br><br>" .
+				   "Para acessá-la e ver mais detalhes, clique <a href='" . base_url() . "/task?id=$task->id'>aqui</a>.";
+		return $this->sendEmail($email, $subject, $message, $user);
 	}
 
+	//Sends new task e-mail
+	public function sendAssignTaskEmail($user, $task) {
+		$email 	 = $user->email;
+		$subject = 'SmallVisor: Uma tarefa foi atribuída à você!';
+		$message = "Prezado <b>$user->name</b>,<br><br>" .
+				   "Uma tarefa foi atribuída para você:<br><br>" . 
+				   "<b>Título:</b> $task->code: $task->title<br>" .
+				   "<b>Status:</b> $task->status<br>" .
+				   "<b>Progresso:</b> $task->progress %<br>" . 
+				   "<b>Data de Entrega:</b> " . $this->dateTimeToString($task->deliverDate) . "<br><br>" .
+				   "Para acessá-la e ver mais detalhes, clique <a href='" . base_url() . "/task?id=$task->id'>aqui</a>.";
+		return $this->sendEmail($email, $subject, $message, $user);
+	}
+	
 }

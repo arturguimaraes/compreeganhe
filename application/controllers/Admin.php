@@ -161,6 +161,8 @@ class Admin extends CI_Controller {
 				$newStatus = $_GET['status'];
 				//Muda o status na tabela 'order'
 				$this->order->updateStatus($order->id, $newStatus);
+				if($newStatus == "Cancelado" && ($order->transactionId == NULL || $order->transactionId == ""))
+					$this->order->updateTransactionIdCancelled($order->id);
 				//Cria um log da mudança
 				$this->order->createLog($order->id, $order->reference, $order->transactionId, $oldStatus, $newStatus);
 				$order->status = $newStatus;

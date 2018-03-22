@@ -146,8 +146,9 @@ class Order extends CI_Model {
 						'description'	=> $description,
 						'status'		=> 'Enviado ao PagSeguro',
 						'total'			=> $total,
+						'reference'		=> $reference,
 						'createDate'	=> $createDate,
-						'reference'		=> $reference
+						'updateDate'	=> $createDate
 					);
 				
 		$result = $this->db->insert('order', $data);
@@ -190,6 +191,18 @@ class Order extends CI_Model {
 		$now =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
 		if($id != NULL && $id != 0 && $status != NULL && $status != "") {
 			$this->db->set('status', $status);
+			$this->db->set('updateDate', $now);
+			$this->db->where('id', $id);
+			return $this->db->update('`order`');
+		}
+		return false;
+	}
+
+	public function updateTransactionIdCancelled($id) {
+		//Pega o horário atual
+		$now =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
+		if($id != NULL && $id != 0) {
+			$this->db->set('transactionId', "Pedido cancelado");
 			$this->db->set('updateDate', $now);
 			$this->db->where('id', $id);
 			return $this->db->update('`order`');

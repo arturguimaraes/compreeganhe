@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/icon-64.png">
+    <link rel="icon" href="assets/img/icon-64.png">
     <title><?=$page['title']?></title>
 
     <!-- Bootstrap core CSS -->

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title><?=$page['title']?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="img/icon-64.png">
+    <link rel="icon" href="assets/img/icon-64.png">
     
     <!-- Bootstrap CSS -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">

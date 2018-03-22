@@ -1,9 +1,3 @@
-$(document).ready(function(){
-    $('[data-toggle="offcanvas"]').click(function(){
-        $("#navigation").toggleClass("hidden-xs");
-    });
-});
-
 function changeIcon(id) {
 	if($('#collapse' + id).hasClass('in'))
 		$('#icon' + id).removeClass('fa-caret-square-o-down').addClass('fa-caret-square-o-right');
@@ -51,3 +45,14 @@ function filterUser() {
 function autoFillReference() {
 	$('#reference').val('CG-');
 }
+
+$(document).ready(function(){
+    $('[data-toggle="offcanvas"]').click(function(){
+        $("#navigation").toggleClass("hidden-xs");
+    });
+
+    //Set autoload every 300000 milliseconds (5 minutes)
+    setTimeout( function() {
+    	location.reload();
+    }, 300000);
+});

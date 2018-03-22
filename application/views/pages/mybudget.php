@@ -86,8 +86,8 @@
             </div>
           </div>
           <div class="col-md-6 no-padding margin-bottom-20 display-flex">
-            <button type="submit" value="submit" class="btn btn-success btn-block btn-lg col-6 margin-right-10">Filtrar</button>
-            <a href="/mybudget" class="btn btn-warning btn-block btn-lg col-6">Limpar</a>
+            <button type="submit" value="submit" class="btn btn-success margin-right-10">Filtrar</button>
+            <a href="/mybudget" class="btn btn-warning">Limpar</a>
           </div>
         </form>
         <div class="table-responsive">

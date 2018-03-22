@@ -404,7 +404,7 @@ class Pages extends CI_Controller {
 		if(!$this->login->checkLogin())
 			return;
 		//Informações da Página
-		$data['page']['title'] = 'Pedido Realizado - Status: Aguardando Pagamento';
+		$data['page']['title'] = 'Pedido Realizado - Status: Enviado ao PagSeguro';
 		$data['page']['url'] = 'confirm';
 		//Pega os dados do usuário
 		$data['user'] = $this->getUserData();
@@ -635,8 +635,11 @@ class Pages extends CI_Controller {
 						$this->user->updatePaymentDate($data['order']->userId);
 						$this->network->checkUpdateById($data['order']->userId);
 					}
+					//Cria descrição para as transações
 					$description = $reference . ' mudou de  "' . $oldStatus  . '" para  "' . $newStatus . '".';
+					//Registra no log do pedido
 					$this->order->createLog($data['order']->id, $reference, $_POST['TransacaoID'], $oldStatus, $newStatus);
+					//Verifica se faz transações
 					if($this->transaction->check($data['order'])) {
 						array_push($response['response'],
 								   array("message"		=> $description,
@@ -648,6 +651,17 @@ class Pages extends CI_Controller {
 					//Não conseguiu fazer transação
 					else {
 						array_push($response['errors'],array("A transacao nao foi feita."));
+					}
+					//Se foi escolhido o método de pagamento com o saldo
+					if(isset($_POST['return']) && $_POST['return'] == "true") {
+						//Atualiza saldo do usuário
+						$this->user->updateBalance($data['order']->userId, ($data['order']->total)*-1);
+						$transactionData = array("orderId" 	=> $data['order']->id,
+												 "userId" 	=> $data['order']->userId,
+												 "value" 	=> ($data['order']->total)*-1,
+												 "action" 	=> "Compra utilizando saldo"
+												);
+						$this->transaction->create($transactionData);
 					}
 				}
 				//Não encontra pedido
@@ -663,7 +677,13 @@ class Pages extends CI_Controller {
 		//Error
 		else
 			array_push($response['errors'],array("Campo 'TransacaoID' nao passado na requisicao."));
-		echo json_encode($response);
+		//Se foi escolhido o método de pagamento com o saldo
+		if(isset($_POST['return']) && $_POST['return'] == "true")
+			if($data['order'] != NULL)
+				redirect("/purchase?reference=" . $data['order']->reference);
+		//Se veio do PagSeguro
+		else 
+			echo json_encode($response);
 	}
 	
 	//Retorno do PagSeguro
@@ -676,6 +696,16 @@ class Pages extends CI_Controller {
 			$_SESSION['shoppingCart'] = array();
 			//Busca o pedido no sistema
 			$order = $this->order->getByTransactionID($_GET['transaction_id']);
+			if($order != NULL) {
+				redirect("/order?id=$order->id");
+				return;
+			}
+		}
+		else if(isset($_GET['reference'])) {
+			//Esvazia o carrinho
+			$_SESSION['shoppingCart'] = array();
+			//Busca o pedido no sistema
+			$order = $this->order->getByReference($_GET['reference']);
 			if($order != NULL) {
 				redirect("/order?id=$order->id");
 				return;

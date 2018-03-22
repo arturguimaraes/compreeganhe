@@ -39,51 +39,71 @@
             </tbody>
           </table>
           <?php if(count($_SESSION['shoppingCart']) > 0) { ?>
-        		<!-- PAGSEGURO -->
-            <form method="post" target="pagseguro" action="https://pagseguro.uol.com.br/v2/checkout/payment.html">
-                <!-- Campos obrigatórios -->  
-                <input name="receiverEmail" type="hidden" value="financeiro@compreeganhe.net">
-                <input name="currency" type="hidden" value="BRL">  
-                <input name="encoding" type="hidden" value="UTF-8">
-          
-          		<?php $i = 1;
-                foreach($_SESSION['shoppingCart'] as $item) { ?>
-                  <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
-                  <input name="itemId<?=$i?>" type="hidden" value="0001">  
-                  <input name="itemDescription<?=$i?>" type="hidden" value="<?=$item->name?>">  
-                  <input name="itemAmount<?=$i?>" type="hidden" value="<?=number_format($item->value, 2, '.', '')?>">  
-                  <input name="itemQuantity<?=$i?>" type="hidden" value="1">  
-                  <input name="itemWeight<?=$i?>" type="hidden" value="1000">
-                  <?php $i++;
-		             } ?>
-          
-                <!-- Código de referência do pagamento no seu sistema (opcional) -->  
-                <input name="reference" type="hidden" value="<?=$reference?>">  
-                 
-                <!-- Dados do comprador (opcionais) -->  
-                <input name="senderName" type="hidden" value="<?=$user->name?>"> 
-                <input name="senderEmail" type="hidden" value="<?=$user->email?>">
-                <input name="senderAreaCode" type="hidden" value="<?=$this->user->getAreaCode($user->telefone)?>">
-                <input name="senderPhone" type="hidden" value="<?=$this->user->getPureNumber($user->telefone)?>">
-                <input name="senderCPF" type="hidden" value="<?=$this->user->getPureCPF($user->cpf)?>">
-                <input name="senderBornDate" type="hidden" value="<?=$user->dob?>">
-                <input name="shippingAddressNumber" type="hidden" value="<?=$user->numero?>">
-                <input name="addressComplement" type="hidden" value="<?=$user->complemento?>">
-                
-                <!-- Informações de frete (opcionais) -->  
-                <input name="shippingType" type="hidden" value="1">  
-                <input name="shippingAddressPostalCode" type="hidden" value="<?=$user->cep?>">  
-                <input name="shippingAddressStreet" type="hidden" value="<?=$user->logradouro?>">  
-                <input name="shippingAddressNumber" type="hidden" value="<?=$user->numero?>">  
-                <input name="shippingAddressComplement" type="hidden" value="<?=$user->complemento?>">
-                <input name="shippingAddressDistrict" type="hidden" value="<?=$user->bairro?>">  
-                <input name="shippingAddressCity" type="hidden" value="<?=$user->cidade?>">                     
-                <div style="width: 100%; display: grid;">
+
+            <div id="payment-form-container">
+              <div id="payment-form-subcontainer">
+            		<!-- PAGSEGURO -->
+                <form method="post" target="pagseguro" action="https://pagseguro.uol.com.br/v2/checkout/payment.html">
+                    <!-- Campos obrigatórios -->  
+                    <input name="receiverEmail" type="hidden" value="financeiro@compreeganhe.net">
+                    <input name="currency" type="hidden" value="BRL">  
+                    <input name="encoding" type="hidden" value="UTF-8">
+              
+              		<?php $i = 1;
+                    foreach($_SESSION['shoppingCart'] as $item) { ?>
+                      <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
+                      <input name="itemId<?=$i?>" type="hidden" value="0001">  
+                      <input name="itemDescription<?=$i?>" type="hidden" value="<?=$item->name?>">  
+                      <input name="itemAmount<?=$i?>" type="hidden" value="<?=number_format($item->value, 2, '.', '')?>">  
+                      <input name="itemQuantity<?=$i?>" type="hidden" value="1">  
+                      <input name="itemWeight<?=$i?>" type="hidden" value="1000">
+                      <?php $i++;
+    		             } ?>
+              
+                    <!-- Código de referência do pagamento no seu sistema (opcional) -->  
+                    <input name="reference" type="hidden" value="<?=$reference?>">  
+                     
+                    <!-- Dados do comprador (opcionais) -->  
+                    <input name="senderName" type="hidden" value="<?=$user->name?>"> 
+                    <input name="senderEmail" type="hidden" value="<?=$user->email?>">
+                    <input name="senderAreaCode" type="hidden" value="<?=$this->user->getAreaCode($user->telefone)?>">
+                    <input name="senderPhone" type="hidden" value="<?=$this->user->getPureNumber($user->telefone)?>">
+                    <input name="senderCPF" type="hidden" value="<?=$this->user->getPureCPF($user->cpf)?>">
+                    <input name="senderBornDate" type="hidden" value="<?=$user->dob?>">
+                    <input name="shippingAddressNumber" type="hidden" value="<?=$user->numero?>">
+                    <input name="addressComplement" type="hidden" value="<?=$user->complemento?>">
+                    
+                    <!-- Informações de frete (opcionais) -->  
+                    <input name="shippingType" type="hidden" value="1">  
+                    <input name="shippingAddressPostalCode" type="hidden" value="<?=$user->cep?>">  
+                    <input name="shippingAddressStreet" type="hidden" value="<?=$user->logradouro?>">  
+                    <input name="shippingAddressNumber" type="hidden" value="<?=$user->numero?>">  
+                    <input name="shippingAddressComplement" type="hidden" value="<?=$user->complemento?>">
+                    <input name="shippingAddressDistrict" type="hidden" value="<?=$user->bairro?>">  
+                    <input name="shippingAddressCity" type="hidden" value="<?=$user->cidade?>">                     
                     <!-- submit do form (obrigatório) -->  
-                    <input alt="Pague com PagSeguro" name="submit"  type="image" style="width: 150px; margin: auto;"
-                        src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/> 
-                </div>
-				    </form>
+                    <input alt="Pague com PagSeguro" name="submit" id="pagseguro-submit" type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/>
+    				    </form>
+
+                <?php if($user->balance >= $total) { ?>
+
+                  <!-- Pagamento com saldo C&G -->
+                  <form method="post" action="/updateOrder" 
+                  onsubmit="return confirm('ATENÇÃO: Ao proceder com essa ação, a quantia de R$ <?=number_format($item->value, 2, ',', '')?> será reduzida do seu saldo. Deseja prosseguir?');">
+                      <!-- Código de referência do pagamento no seu sistema (opcional) -->  
+                      <input name="Referencia" type="hidden" value="<?=$reference?>">
+                      <input name="TipoPagamento" type="hidden" value="Saldo no Compre & Ganhe">
+                      <input name="TransacaoID" type="hidden" value="Pedido pago com o saldo no Compre & Ganhe">
+                      <input name="StatusTransacao" type="hidden" value="Aprovado">
+                      <input name="return" type="hidden" value="true">
+                      <!-- submit do form (obrigatório) -->  
+                      <input name="submit" type="submit" id="paywithbalance-submit" value="Pagar com saldo" class="btn btn-success btn-lg"/> 
+                  </form>
+
+                <? } ?>
+
+              </div>
+            </div>
           <? } ?>
         </div>
       </div>

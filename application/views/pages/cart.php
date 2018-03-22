@@ -73,7 +73,7 @@
               <?php if(count($orders) > 0) {  
                 foreach($orders as $order) { ?>
                   <tr style="<?=$order->backgroundColor?>">
-                    <td><?=$order->reference?></td>
+                    <td><a class="text-green" href="/order?id=<?=$order->id?>"><?=$order->reference?></a></td>
                     <td><?=$this->util->dateTimeToString($order->createDate)?></td>
                     <td><?=$order->description?></td>
                     <td><?=$order->status?></td>

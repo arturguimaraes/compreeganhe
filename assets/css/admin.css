@@ -356,11 +356,11 @@ header {
 
 .logo {
     text-align: center;
-	background: white;
+    background: white;
 }
 
 .navi a {
-	background: white;
+    background: white;
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     color: green;
@@ -377,7 +377,7 @@ header {
 }
 
 .navi .active a {
-	background: white;
+    background: white;
     border-left: 5px solid green;
     padding-left: 15px;
 }
@@ -408,7 +408,7 @@ header {
 }
 
 .navbar-header-main {
-	height: 50px;
+    height: 50px;
 }
 
 .circle-logo {
@@ -510,44 +510,6 @@ header {
     opacity: 1;
     text-shadow: none;
 }
-.modal-body input {
-    border: 1px solid #d4d9e3;
-    font-size: 14px;
-    font-weight: 300;
-    margin: 5px 0;
-    padding: 14px 10px;
-    width: 100%;
-    color: #8492af;
-}
-.modal-body textarea {
-    border: 1px solid #d4d9e3;
-    font-size: 14px;
-    font-weight: 300;
-    height: 200px;
-    margin-top: 5px;
-    padding: 9px 10px;
-    width: 100%;
-    color: #8492af;
-}
-.modal-header.login-header h4 {
-    color: #ffffff;
-}
-.modal-footer .add-project {
-    background: #5584ff none repeat scroll 0 0;
-    border: medium none;
-    border-radius: 100px;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 30px;
-    position: relative;
-}
-.modal-footer .add-project::before{display: none;}
-.modal-footer {
-    border: 0 none;
-    padding: 10px 15px 26px;
-    text-align: right;
-}
 .cancel {
     background: #0E1A35     ;
     border: medium none;
@@ -559,19 +521,72 @@ header {
     position: relative;
     
 }
-.modal{
-    top: 20%; 
-}
-.modal-header .close {
-    margin-top: 2px;
-}
 .search input:focus{
     border-bottom: 1px solid #BDC4D4;
     line-height:22px;
     transition: 0.1s all;
 }
 
-.modal-header.login-header {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.loader {
+    width: 100%;
+}
+
+.loader-track {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid green;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 40px auto;
+}
+
+.loader-text {
+    text-align: center;
+    font-style: italic;
+    color: #ddd;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-body {
+    width: 100%;
+}
+
+.modal-message-error {
+    font-style: italic;
+    text-align: center;
+    color: red;
+}
+
+.modal-message-success {
+    font-style: italic;
+    text-align: center;
+    color: green;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#reference {
+    width:240px;
+    display:initial;
+}
+
+#dateStart {
+    width:150px;
+    display:initial;
+}
+
+#dateEnd {
+    width:150px;
+    display:initial; 
 }

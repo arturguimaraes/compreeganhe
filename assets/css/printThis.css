@@ -1,0 +1,79 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+
+	html, body {
+		width: 210mm;
+		height: 297mm;
+	}
+
+  	.page {
+		width: 100%;
+		min-height: 100%;
+	}
+
+	.w-100 {
+		width: 100%;
+	}
+
+	.container {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+		margin: 30px;
+		border: 2px solid black;
+		padding: 30px;
+	}
+
+	.container-no-border {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+		margin: 30px;
+		padding: 30px;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	.w-50 {
+		width: 40%;
+		margin: 20px 10px;
+	}
+
+	.h-min-100 {
+		height: calc(100vh - 100px);
+	}
+
+	.h-150 {
+		height: 150px;
+	}
+
+	.h-200 {
+		height: 200px;
+	}
+
+	.h-300 {
+		height: 300px;
+	}
+
+	.h-400 {
+		height: 400px;
+	}
+
+	.h-500 {
+		height: 500px;
+	}
+
+	.h-600 {
+		height: 600px;
+	}
+
+	.text-align-center {
+		text-align: center;
+	}
+}

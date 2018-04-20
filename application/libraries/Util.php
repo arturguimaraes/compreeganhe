@@ -163,6 +163,42 @@ class Util {
 			usort($array, "cmpCreateDate");*/
 	}
 
+	public function filterOrdersAdmin($array) {
+		//Inicialize empty array
+		$newArray = array();		
+		if(!isset($_GET['dateStart']) || !isset($_GET['dateEnd']) || $_GET['dateStart'] == "" || $_GET['dateEnd'] == "")
+			$newArray = $array;
+		//Verifica datas
+		else if (isset($_GET['dateStart']) && $_GET['dateStart'] != "" && isset($_GET['dateEnd']) && $_GET['dateEnd'] != "") {
+			foreach($array as $order) {
+				$createDate = strtotime($this->dateTimeToDate($order->createDate));
+				$dateStart = strtotime($_GET['dateStart']);
+				$dateEnd = strtotime($_GET['dateEnd']);
+				if($createDate >= $dateStart && $createDate <= $dateEnd)
+					array_push($newArray, $order);
+			}
+		}
+		return $newArray;
+	}
+
+	public function filterOrdersAdminExport($array) {
+		//Inicialize empty array
+		$newArray = array();		
+		if(!isset($_GET['dateStart']) || !isset($_GET['dateEnd']) || $_GET['dateStart'] == "" || $_GET['dateEnd'] == "")
+			$newArray = $array;
+		//Verifica datas
+		else if (isset($_GET['dateStart']) && $_GET['dateStart'] != "" && isset($_GET['dateEnd']) && $_GET['dateEnd'] != "") {
+			foreach($array as $order) {
+				$createDate = strtotime($this->dateTimeToDate($order->orderCreateDate));
+				$dateStart = strtotime($_GET['dateStart']);
+				$dateEnd = strtotime($_GET['dateEnd']);
+				if($createDate >= $dateStart && $createDate <= $dateEnd)
+					array_push($newArray, $order);
+			}
+		}
+		return $newArray;
+	}
+
 	public function orderOrderArrayByName($array) {
 		//Order by name
 		function cmpName($a, $b) {
@@ -303,6 +339,86 @@ class Util {
 	//Pega string com limitações
 	public function getStringMax($string, $max) {
 		return mb_substr($string,0,$max).(strlen($string)>$max?'...':'');
+	}
+
+	public function getRandomWithZeros() {
+		$min = 1;
+		$max = 9999;
+		$random = mt_rand($min,$max);
+		if($random < 10)
+			return "000" . $random;
+		else if($random < 100)
+			return "00" . $random;
+		else if($random < 1000)
+			return "0" . $random;
+		else
+			return $random;
+	}
+
+	public function getPaymentCode($user, $shoppingCart, $reference) {
+		$this->CI->load->model(array('user'));
+		//Fill required form data
+		$data["token"] 		= "F142BFBD6CF24273B705ADD8C0F5F985";
+		$data["email"] 		= "financeiro@compreeganhe.net";
+		$data["currency"] 	= "BRL";
+		$data["encoding"] 	= "UTF-8";
+		$data["reference"] = $reference;
+		//Fill items
+		$i = 1;
+		foreach($shoppingCart as $item) {
+			$data["itemId$i"] 			= "0001";
+			$data["itemDescription$i"] 	= $item->name;
+			$data["itemAmount$i"] 		= number_format($item->value, 2, '.', '');
+			$data["itemQuantity$i"] 	= 1;
+			$i++;
+		}
+		//Fill form buyer's data
+		$data["senderName"] 			= $user->name;
+		$data["senderEmail"] 			= $user->email;
+		if(strlen($this->CI->user->getPureNumber($user->telefone)) == 8 || strlen($this->CI->user->getPureNumber($user->telefone)) == 9) {
+			$data["senderAreaCode"] 		= $this->CI->user->getAreaCode($user->telefone);
+			$data["senderPhone"] 			= $this->CI->user->getPureNumber($user->telefone);
+		}
+		$data["senderCPF"] 				= $this->CI->user->getPureCPF($user->cpf);
+		$data["shippingAddressNumber"] 	= $user->numero;
+		$data["addressComplement"] 		= $user->complemento;
+		//Fill form shipping data
+		$data["shippingType"] 				= 1;
+		$data["shippingAddressPostalCode"] 	= $user->cep;
+		$data["shippingAddressStreet"] 		= $user->logradouro;
+		$data["shippingAddressNumber"] 		= $user->numero;
+		$data["shippingAddressComplement"] 	= $user->complemento;
+		$data["shippingAddressDistrict"] 	= $user->bairro;
+		$data["shippingAddressCity"] 		= $user->cidade;
+		//makes request
+		$url = "https://ws.pagseguro.uol.com.br/v2/checkout";
+		$data = http_build_query($data);
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+		$xml = curl_exec($curl);
+		curl_close($curl);
+		$xml = simplexml_load_string($xml);
+		//return code
+		return $xml;
+	}
+
+	//Get 6 digit code
+	public function getSixDigitsCode($id) {
+		if($id < 10)
+			return '00000' . $id;
+		if($id < 100)
+			return '0000' . $id;
+		if($id < 1000)
+			return '000' . $id;
+		if($id < 10000)
+			return '00' . $id;
+		if($id < 100000)
+			return '0' . $id;
+		return $id;
 	}
 
 }

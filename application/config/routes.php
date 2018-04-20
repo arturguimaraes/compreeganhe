@@ -56,20 +56,22 @@ $route['404_override'] 			= '';
 $route['translate_uri_dashes'] 	= FALSE;
 
 // ADMIN ROUTES
-$route['admin'] 			= 'admin/index';
-$route['adminSobre'] 		= 'admin/sobre';
-$route['adminTaxas'] 		= 'admin/taxas';
-$route['adminPrecos'] 		= 'admin/precos';
-$route['adminAddProduct'] 	= 'admin/add';
-$route['adminLogin']	 	= 'admin/login';
-$route['adminOrders']	 	= 'admin/orders';
-$route['adminUsers']	 	= 'admin/users';
-$route['adminMessages']	 	= 'admin/messages';
+$route['admin'] 					= 'admin/index';
+$route['adminSobre'] 				= 'admin/sobre';
+$route['adminTaxas'] 				= 'admin/taxas';
+$route['adminPrecos'] 				= 'admin/precos';
+$route['adminAddProduct'] 			= 'admin/add';
+$route['adminLogin']	 			= 'admin/login';
+$route['adminOrders']	 			= 'admin/orders';
+$route['adminUsers']	 			= 'admin/users';
+$route['adminMessages']	 			= 'admin/messages';
+$route['adminMessagesReceived']	 	= 'admin/messagesReceived';
 
 // NOT PAGED ROUTES
 $route['login'] 			= 'pages/login';
 $route['logout'] 			= 'pages/logout';
 $route['updateOrder'] 		= 'pages/updateOrder';
+$route['resetPassword'] 	= 'pages/resetPassword';
 
 // ROUTES WITH LOGIN CHECKS
 $route['signup']			= 'pages/signup';
@@ -100,6 +102,7 @@ $route['rank'] 				= 'pages/load/rank';
 $route['password'] 			= 'pages/load/password';
 $route['pay'] 				= 'pages/load/pay';
 $route['withdraw'] 			= 'pages/load/withdraw';
+$route['paybill'] 			= 'pages/load/paybill';
 
 // ERROR PAGE ROUTE
 $route['(:any)']			= 'pages/error';

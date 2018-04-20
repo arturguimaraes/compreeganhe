@@ -12,7 +12,7 @@
 <!-- PAGE CONTENT -->
 <div id="page-content">
   <div class="container">
-    <div class="col-md-12 padding-top-100 display-grid">
+    <div class="col-md-12 padding-top-100 display-grid-desktop">
       <h2 class="col-md-12 margin-bottom-30 text-align-center">Pagamento Não Recebido</h2>
       <div class="table-responsive">
         <table class="table margin-bottom-50">
@@ -42,7 +42,9 @@
       <p class="text-align-center"><b><?=$order->status?></b></p>
       <p class="text-align-center">Entre no site do <a href="https://pagseguro.uol.com.br/">PagSeguro</a> e verifique o status da compra.</p>
       <p class="text-align-center">Se preferir, faça outro pedido e realize o pagamento da taxa de inscrição.</p>
-      <a class="btn btn-success margin-auto-horizontal" href="/product?id=1">Pagar Taxa de Inscrição</a>
+      <div class="col-md-3 margin-auto-horizontal">
+        <a class="btn btn-success btn-block btn-lg" href="/product?id=1">Pagar Taxa de Inscrição</a>
+      </div>
     </div>
   </div>
 </div>

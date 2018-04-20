@@ -9,7 +9,7 @@
           <div class="col-md-12 <?=$messages['login']['messageClass']?> italic margin-bottom-30 text-align-center"><?=$messages['login']['message']?></div>
         <? } ?>
         <div class="col-md-12">
-          <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" name="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</button>
+          <button class="btn btn-lg btn-success btn-block" type="submit" id="submit" name="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</button>
         </div>
     </form>
 </div>

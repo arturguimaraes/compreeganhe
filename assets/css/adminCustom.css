@@ -29,6 +29,11 @@
 	overflow-x: auto;
 }
 
+.export-container {
+	width:fit-content;
+	display:inline-block;
+}
+
 /******************** TEXT ********************/
 .text-align-center {
 	text-align: center;
@@ -71,6 +76,10 @@
 	display: flex;
 }
 
+.display-inline-block {
+	display: inline-block;
+}
+
 .display-flex-desktop {
 	display: flex;
 }
@@ -102,6 +111,10 @@
 .margin-horizontal-10 {
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.margin-top-8 {
+	margin-top: 8px;
 }
 
 .margin-top-10 {
@@ -165,6 +178,10 @@
 }
 
 /******************** PADDING ********************/
+.no-padding {
+	padding: 0;
+}
+
 .padding-top-100 {
 	padding-top: 100px;
 }

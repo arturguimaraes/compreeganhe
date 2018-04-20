@@ -458,12 +458,17 @@ header.masthead {
 
 #pagseguro-submit {
 	width: 150px;
+	height: 66px;
 }
 
 #paywithbalance-submit {
 	margin-left: 30px;
 	width: 200px;
 	height: 66px;
+}
+
+.form-group {
+	margin-bottom: 0;
 }
 
 /******************** MOBILE CONFIGURATIONS ********************/
@@ -557,6 +562,14 @@ header.masthead {
 		display: inherit;
 	}
 
+	.display-desktop-only {
+		display: none;
+	}
+
+	.no-padding-mobile {
+		padding: 0;
+	}
+
 	#code {
 		width: auto;
 	}
@@ -587,6 +600,7 @@ header.masthead {
 	#pagseguro-submit {
 		width: 150px;
 		margin: auto;
+		display: inherit;
 	}
 
 	#paywithbalance-submit {
@@ -595,13 +609,42 @@ header.masthead {
 		width: auto;
 		height: 66px;
 	}
+
+	.g-recaptcha {
+		transform:scale(0.8);
+		-webkit-transform:scale(0.8);
+		transform-origin:0 0;
+		-webkit-transform-origin:0 0;
+	}
 }
 
 /******************** DESKTOP ********************/
 @media (min-width: 992px) {
-	 .message-buttom-margin {
-	 	margin-right: 30px;
-	 }
+	.message-buttom-margin {
+		margin-right: 30px;
+	}
+
+	#numero {
+		width: 15%;
+	}
+
+	.display-mobile-only {
+		display: none;
+	}
+
+	.display-grid-desktop {
+		display: grid;
+	}
+
+	#complemento {
+		width: 80%;
+		margin-left: 20%;
+		margin-top: -48px;
+	}
+
+	.complemento-informacoes {
+		margin-left: 56% !important;
+	}
 }
 
 /******************** HIDDEN ********************/

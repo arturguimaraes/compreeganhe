@@ -169,7 +169,7 @@ class Admin extends CI_Controller {
 				//Verifica se precisa atualizar o status de pagamento do usuário e graduação da rede
 				if($this->orderProduct->getProductId($order->id) == 1 && ($newStatus == 'Aprovado' || $newStatus == 'Aprovada')) {
 					$this->user->updatePaymentDate($order->userId);
-					$this->network->checkUpdateById($data['order']->userId);
+					$this->network->checkUpdateById($order->userId);
 				}
 				//Verifica se é necessária uma transação para a mudança
 				$this->transaction->check($order);
@@ -177,10 +177,15 @@ class Admin extends CI_Controller {
 				return;
 			}
 		}
+		//Exportação
+		if(isset($_POST['export1']))
+    		redirect("/export?admin=1");
+		if(isset($_POST['export2']))
+    		redirect("/export?admin=2");
 		//Informações da página
 		$data['page']['title'] = "Compre & Ganhe - Administração - Gerenciar Pedidos";
 		//Pega todos os pedidos do banco
-		$data['orders'] = $this->order->getAllAbsolute();
+		$data['orders'] = $this->util->filterOrdersAdmin($this->order->getAllAbsolute());
 		//Pega os usuários de cada pedido
 		foreach($data['orders'] as $order)
 			$order->user = $this->user->getUserDataById($order->userId);
@@ -227,7 +232,7 @@ class Admin extends CI_Controller {
 			return;
 		}
 		//Informações da página
-		$data['page']['title'] = "Compre & Ganhe - Administração - Enviar Mensagens aos Usuários";
+		$data['page']['title'] = "Compre & Ganhe - Administração - Enviar Mensagem";
 		//Envia mensagem
 		if(isset($_POST['submit'])) {
 			if($this->message->sendToAll($_POST['message']))
@@ -236,6 +241,55 @@ class Admin extends CI_Controller {
 				$data = $this->helper->sendMessage($data, 'message', NULL, false, 'Erro ao enviar mensagem.');
 		}
 		$this->load('messages', $data);
+	}
+
+	//Função de visualizar mensagens de usuários
+	public function messagesReceived()	{
+		//Verificar Login
+		if(!$this->adminModel->checkLogin()) {
+			redirect('adminLogin');
+			return;
+		}
+		//Informações da página
+		$data['page']['title'] = "Compre & Ganhe - Administração - Mensagens de Usuários";
+		$data['messages'] = $this->message->getAllAdmin();
+		$this->load('messagesReceived', $data);
+	}
+
+	public function getUserData() {
+		echo json_encode($this->user->getUserDataById($_GET['userId']));
+	}
+
+	public function changeUserData() {
+		$post = $this->util->arrayToObject($_POST);
+		if($this->user->existsByCPFID($post->id,$post->cpf))
+			echo "cpf";
+		else if($this->user->existsByRGID($post->id,$post->rg))
+			echo "rg";
+		else if($this->user->existsByEmailID($post->id,$post->email))
+			echo "email";
+		else if($this->user->updateAdmin($post))
+			echo "success";
+		else
+			echo "error";
+	}
+
+	public function getMessage() {
+		$id = $_GET['messageId'];
+		$this->message->markRead($id);
+		echo json_encode($this->message->get($id));
+	}
+
+	public function eraseMessage() {
+		$this->message->deleteAdmin($_GET['messageId']);
+	}
+
+	public function export1() {
+		echo json_encode($this->util->filterOrdersAdminExport($this->order->getAllExportAdmin1()));
+	}
+
+	public function export2() {
+		echo json_encode($this->util->filterOrdersAdminExport($this->order->getAllExportAdmin2()));
 	}
 	
 	public function login() {			
@@ -286,7 +340,7 @@ class Admin extends CI_Controller {
 								  'usernameAdmin'	=> $_GET['username'],
 								  'dateTimeAdmin'	=> mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo')));	
 				}
-				redirect('admin');
+				redirect('adminOrders?limit=100');
 				return;
 			}
 		}

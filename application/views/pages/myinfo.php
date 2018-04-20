@@ -5,16 +5,26 @@
 <!-- PAGE CONTENT -->
 <div id="page-content">
     <div class="container">
-      <div class="col-md-12  margin-bottom-50  padding-top-100">
+      <div class="col-md-12 margin-bottom-50 no-padding padding-top-100">
         
         <h2 class="col-md-12 margin-bottom-30 text-align-center">Meus Dados Cadastrais</h2>
         
-        <form id="signupForm" class="form-signin col-md-12 margin-auto-horizontal" role="form" action="" method="post">
+        <form id="signupForm" class="form-signin col-md-12 no-padding margin-auto-horizontal" role="form" action="" method="post">
           
           <? if (isset($messages) && isset($messages['submit'])) { ?>
             <div class="col-md-12 <?=$messages['submit']['messageClass']?> italic margin-bottom-30 text-align-center"><?=$messages['submit']['message']?></div>
           <? } ?>
             
+          <div class="col-md-12">
+            
+            <?php if (!$user->changed) { ?>
+              <p class="italic"><span class="text-red">Atenção:</span> Você só poderá alterar estes dados uma vez. Após isso, quaisquer alterações necessitarão de ajuda do suporte.</p>
+            <?php } else { ?>
+              <p class="italic"> Você já modificou seus dados. Entre em contato com o suporte para modificar novamente.</p>
+            <? } ?>
+
+          </div>
+
           <div class="display-flex-desktop">
             
             <div class="col-md-6 col-12">
@@ -24,22 +34,22 @@
                     <input type="text" id="name" name="name" class="form-control margin-bottom-10" required="true" value="<?=$this->user->get($user, 'name')?>">
                   </div>
               </div>
-              <div class="form-group row">
-              	<label for="email" class="col-sm-3 col-form-label">E-mail</label>
-                  <div class="col-sm-9">
-                    <input type="email" id="email" name="email" class="form-control margin-bottom-10" required="true" value="<?=$this->user->get($user, 'email')?>">
-                  </div>
-              </div>
-            	<div class="form-group row hidden">
+            	<div class="form-group row">
               	<label for="cpf" class="col-sm-3 col-form-label">CPF</label>
                   <div class="col-sm-9">
-                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" required="true" maxlength=14 value="<?=$this->user->get($user, 'cpf')?>" onblur="checkCPF(this.value);">
+                    <input type="text" id="cpf" name="cpf" class="form-control margin-bottom-10" required="true" readonly maxlength=14 value="<?=$this->user->get($user, 'cpf')?>" onblur="checkCPF(this.value);">
                   </div>
               </div>
-            	<div class="form-group row hidden">
+            	<div class="form-group row">
               	<label for="rg" class="col-sm-3 col-form-label">RG</label>
                   <div class="col-sm-9">
-                    <input type="text" id="rg" name="rg" class="form-control margin-bottom-10" required="true" maxlength="12" value="<?=$this->user->get($user, 'rg')?>">
+                    <input type="text" id="rg" name="rg" class="form-control margin-bottom-10" required="true" readonly maxlength="12" value="<?=$this->user->get($user, 'rg')?>">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">E-mail</label>
+                  <div class="col-sm-9">
+                    <input type="email" id="email" name="email" class="form-control margin-bottom-10" required="true" readonly value="<?=$this->user->get($user, 'email')?>">
                   </div>
               </div>
             	<div class="form-group row">
@@ -51,7 +61,7 @@
               <div class="form-group row">
                 <label for="telefone" class="col-sm-3 col-form-label">Telefone</label>
                   <div class="col-sm-9">
-                    <input type="text" id="telefone" name="telefone" class="form-control margin-bottom-10" maxlength="15" value="<?=$this->user->get($user, 'telefone')?>">
+                    <input type="text" id="telefone" name="telefone" class="form-control margin-bottom-10" required="true" readonly maxlength="15" value="<?=$this->user->get($user, 'telefone')?>">
                   </div>
               </div>
               <div class="form-group row">
@@ -78,6 +88,10 @@
                     </select>
                   </div>
               </div>
+            </div>
+            <!-- /.col-md-6 -->
+
+            <div class="col-md-6 col-12">
               <div class="form-group row">
                 <label for="sexo" class="col-sm-3 col-form-label">Sexo</label>
                   <div class="col-sm-9">
@@ -89,16 +103,16 @@
                   </div>
               </div>
               <div class="form-group row">
-                <label for="escolaridade" class="col-sm-3 col-form-label">Grau de Escolaridade</label>
+                <label for="escolaridade" class="col-sm-3 col-form-label">Escolaridade</label>
                   <div class="col-sm-9">
                     <select id="escolaridade" name="escolaridade" class="form-control margin-bottom-10">
                       <option value="">Selecione o grau de escolaridade</option>
-                      <option value="fundamental" <?=$this->user->get($user, 'escolaridade') == 'fundamental' ? 'selected' : ''?>>Ensino Fundamental</option>
+                      <option value="fundamentalIncompleto" <?=$this->user->get($user, 'escolaridade') == 'fundamentalIncompleto' ? 'selected' : ''?>>Ensino Fundamental Incompleto</option>
+                      <option value="fundamentalCompleto" <?=$this->user->get($user, 'escolaridade') == 'fundamentalCompleto' ? 'selected' : ''?>>Ensino Fundamental Completo</option>
                       <option value="medio" <?=$this->user->get($user, 'escolaridade') == 'medio' ? 'selected' : ''?>>Ensino Médio</option>
                       <option value="tecnico" <?=$this->user->get($user, 'escolaridade') == 'tecnico' ? 'selected' : ''?>>Ensino Técnico</option>
                       <option value="superior" <?=$this->user->get($user, 'escolaridade') == 'superior' ? 'selected' : ''?>>Ensino Superior</option>
                       <option value="pos" <?=$this->user->get($user, 'escolaridade') == 'pos' ? 'selected' : ''?>>Pós Graduado (mestrado / doutorado)</option>
-                      Ensino 
                     </select>
                   </div>
               </div>
@@ -108,16 +122,12 @@
                     <input type="text" id="profissao" name="profissao" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'profissao')?>">
                   </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row hidden">
                 <label for="pis" class="col-sm-3 col-form-label">PIS</label>
                   <div class="col-sm-9">
                     <input type="text" id="pis" name="pis" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'pis')?>">
                   </div>
               </div>
-            </div>
-            <!-- /.col-md-6 -->
-
-            <div class="col-md-6 col-12">
               <div class="form-group row">
                 <label for="cep" class="col-sm-3 col-form-label">CEP</label>
                   <div class="col-sm-9">
@@ -131,16 +141,21 @@
                   </div>
               </div>
               <div class="form-group row">
-                <label for="numero" class="col-sm-3 col-form-label">Número</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="numero" name="numero" class="form-control margin-bottom-10" maxlength="8" value="<?=$this->user->get($user, 'numero')?>">
-                  </div>
+                <label for="numero" class="col-sm-3 col-form-label display-desktop-only">Nº/Complemento</label>
+                <label for="numero" class="col-sm-3 col-form-label display-mobile-only">Número</label>
+                <div class="col-sm-9">
+                  <input type="text" id="numero" name="numero" class="form-control margin-bottom-10" maxlength="8" value="<?=$this->user->get($user, 'numero')?>">
+
+                </div>
+                <div class="col-sm-9 display-desktop-only">
+                  <input type="text" id="complemento" name="complemento" class="form-control margin-bottom-10 complemento-informacoes" value="<?=$this->user->get($user, 'complemento')?>">
+                </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row display-mobile-only">
                 <label for="complemento" class="col-sm-3 col-form-label">Complemento</label>
-                  <div class="col-sm-9">
-                    <input type="text" id="complemento" name="complemento" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'complemento')?>">
-                  </div>
+                <div class="col-sm-9">
+                  <input type="text" id="complemento" name="complemento" class="form-control margin-bottom-10" value="<?=$this->user->get($user, 'complemento')?>">
+                </div>
               </div>
               <div class="form-group row">
                 <label for="bairro" class="col-sm-3 col-form-label">Bairro</label>
@@ -166,9 +181,24 @@
           </div>
           <!-- /.display-flex-desktop -->
 
-          <div class="col-md-12">
+          <?php if (!$user->changed) { ?>
+
+          <div class="col-md-4 margin-auto-horizontal margin-top-20">
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" name="submit">Atualizar</button>
           </div>
+
+          <?php } else { ?>
+            <script>
+              $("#signupForm").each(function(){
+                  $(this).find(':input').each(function(){
+                    $(this).prop('readonly', true);
+                  });
+                  $(this).find('select').each(function(){
+                    $(this).attr('disabled', true);
+                  });
+              });
+            </script>
+          <? } ?>
 
         </form>
       </div>

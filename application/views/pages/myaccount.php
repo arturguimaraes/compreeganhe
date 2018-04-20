@@ -26,7 +26,7 @@
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-success button-my-account" href="withdraw">
                 <i class="fa fa-dollar"></i> Saque
             </a>
-            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-warning button-my-account" href="pay">
+            <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-warning button-my-account" href="paybill">
                 <i class="fa fa-barcode"></i> Pagar Fatura
             </a>
             <a class="col-md-3 margin-horizontal-4 margin-bottom-50 btn btn-primary button-my-account" href="myinfo">

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +25,13 @@
     
     <!-- jQuery -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
+
+    <!-- jQuery Mask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js" type="text/javascript" ></script>
     
+    <!-- reCaptcha -->
+    <script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
+
 </head>
 <body id="page-top">
 

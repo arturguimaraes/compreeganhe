@@ -101,6 +101,9 @@ class Pages extends CI_Controller {
 				break;		
 			case 'withdraw':
 				$data = $this->withdraw($data);
+				break;	
+			case 'paybill':
+				$data = $this->paybill($data);
 				break;
 			default:
 				$this->helper->loadErrorPage();
@@ -194,30 +197,48 @@ class Pages extends CI_Controller {
 		}
 		//Se o código existe
 		if($data['codeExists'] && isset($_POST['submit'])) {
-			//Gera senha aleatória
-			$_POST['password'] = '1234';//$this->util->geraSenha(15, true, true, true);
-			//Converte POST para objeto
-			$post = $this->util->arrayToObject($_POST);
-			//Tenta criar usuário
-			$userCreated = $this->user->create($data['user']->id, $post);
-			//Sucesso ao criar usuário
-			if($userCreated != NULL) {
-				//Verifica se atualiza graduação de pais
-				$this->network->checkUpdate($userCreated);
-				//Inicia sessão
-				session_start();
-				$_SESSION = array('loggedIn'	=> true,
-								  'username'	=> $userCreated->username,
-								  'date/time'	=> mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo')));
-				$encodedPassword = urlencode($post->password);
-				//Redireciona para o login
-				redirect("login?username=$userCreated->username&password=$encodedPassword");
-				return;
-			}
-			//Erro ao criar no banco de dados
+			if($this->user->existsByEmail($_POST['email']))
+				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'E-mail já cadastrado.');
+			else if($this->user->existsByCPF($_POST['cpf']))
+				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'CPF já cadastrado.');
+			else if($this->user->existsByRG($_POST['rg']))
+				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'RG já cadastrado.');
+			else if(count(explode(" ", $_POST['name'])) < 2) {
+				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'Digite o seu nome completo.');
+			} 
 			else {
-				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'Não foi possível cadastrar o usuário. Tente novamente.');
-				//var_dump($_POST);
+				//Gera senha aleatória (feita na na controller por causa do e-mail de cadastro)
+				//$_POST['password'] = $this->util->geraSenha(15, true, true, true);
+				$_POST['password'] = '1234';
+				//Converte POST para objeto
+				$post = $this->util->arrayToObject($_POST);
+				//Código do usuário
+				$newCode = $this->util->getSixDigitsCode($this->user->countAll());
+				$i = 0;
+				do {
+				   $newUsername = $this->util->getSixDigitsCode($this->user->countAll() + $i);
+				   $i++;
+				} while ($this->user->existsByUsername($newUsername));
+				//Tenta criar usuário
+				$userCreated = $this->user->create($data['user']->id, $post, $newUsername);
+				//Sucesso ao criar usuário
+				if($userCreated != NULL) {
+					//Verifica se atualiza graduação de pais
+					$this->network->checkUpdate($userCreated);
+					//Inicia sessão
+					session_start();
+					$_SESSION = array('loggedIn'	=> true,
+									  'username'	=> $userCreated->username,
+									  'date/time'	=> mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo')));
+					$encodedPassword = urlencode($post->password);
+					//Redireciona para o login
+					redirect("login?username=$userCreated->username&password=$encodedPassword");
+					return;
+				}
+				//Erro ao criar no banco de dados
+				else {
+					$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'Não foi possível cadastrar o usuário. Tente novamente.');
+				}
 			}
 		}
 		//Carrega a página		
@@ -416,13 +437,18 @@ class Pages extends CI_Controller {
 			if($item->id == 1)
 				$data['page']['lockedNav'] = true;
 		}
-		//Gera referencia
-		$data['reference'] = 'CG-' . date('dmYHis') . mt_rand();
+		//Gera referencia até não haver uma igual
+		do {
+			$data['reference'] = date('dmY') . $random = $this->util->getRandomWithZeros();
+		} while ($this->order->getByReference($data['reference']));
+		//Status inicial
 		$data['status'] = 'Enviado ao PagSeguro';
 		//Insere o pedido no banco
 		$data['insertedOrderId'] = $this->order->create($_SESSION['shoppingCart'], $data['user']->id, $data['reference']);
 		//Se o pedido é inserido com sucesso
 		if ($data['insertedOrderId'] != NULL) {
+			//Get PagSeguro Code
+			$data['payment'] = $this->util->getPaymentCode($data['user'], $_SESSION['shoppingCart'], $data['reference']);
 			$data['total'] = $total;
 			$description = $data['reference'] . ' registrada com status "' . $data['status'] . '".';
 			$this->order->createLog($data['insertedOrderId'], $data['reference'], NULL, "Pedido Registrado", $data['status']);
@@ -491,25 +517,27 @@ class Pages extends CI_Controller {
 	//Enviar mensagem
 	public function sendMessage($data) {
 		//Informações da Página
-		$data['page']['title'] = 'Enviar Mensagem';
+		$data['page']['title'] = 'Enviar Mensagem para o Suporte';
 		$data['page']['url'] = 'sendMessage';
 		if(isset($_POST['submit'])) {
 			$post = $this->util->arrayToObject($_POST);
-			if($this->message->create($data['user']->id, $post->to, $post->message))
+			if($this->message->create($data['user']->id, 0, $post->message))
 				$data['page']['url'] = 'messageConfirm';
 			else
 				$data = $this->helper->sendMessage($data, 'message', NULL, false, 'Não foi possível enviar a mensage. Tente novamente.');
 		}
-		if(!isset($_GET['id']) || $_GET['id'] == "" || $_GET['id'] == 0)
+		if(!isset($_GET['id']) || $_GET['id'] == "" || $_GET['id'] == 0 || $_GET['id'] != 1)
 			$data['direct'] = false;
 		else {
 			$data['userTo'] = $this->user->getUserDataById($_GET['id']);
-			if($data['userTo'] == NULL) redirect('messages');
+			if($data['userTo'] == NULL) 
+				redirect('messages');
 			else
 				$data['direct'] = true;
 		}
 		if(!$data['direct']) {
-			//Adiciona as informações do próprio usuário no array da rede
+			redirect('messages');
+			/*//Adiciona as informações do próprio usuário no array da rede
 			$node = array('user' => $data['user'], 'level' => 'Dono', 'children' => $this->network->getSons($data['user']->id));
 			//Pega todos os usuários da rede do usuário logado
 			$network = $this->util->treeToArray(array(), $node);
@@ -525,7 +553,7 @@ class Pages extends CI_Controller {
 			//Organiza a rede por nome
 			$data['network'] = $this->util->orderOrderArrayByName($network);
 			//Salva ID do dono da rede
-			$data['onwner'] = $data['user']->id;
+			$data['onwner'] = $data['user']->id;*/
 		}
 		return $data;
 	}
@@ -570,7 +598,7 @@ class Pages extends CI_Controller {
 	//Página da mudança de senha
 	public function password($data) {
 		//Informações da Página
-		$data['page']['title'] = 'Mudar a Senha';
+		$data['page']['title'] = 'Trocar a Senha';
 		$data['page']['url'] = 'password';
 		if(isset($_POST['submit'])) {
 			//Password is the same
@@ -585,7 +613,7 @@ class Pages extends CI_Controller {
 			//Success
 			else {
 				if($this->user->updatePassword($_SESSION['username'], $_POST['newPassword'])) {
-					$data = $this->helper->sendMessage($data, 'password', NULL, true, 'Sua senha foi trocada com sucesso!');	
+					$data = $this->helper->sendMessage($data, 'password', NULL, true, 'Sua senha foi atualizada com sucesso!');	
 					$this->helper->sendChangePasswordEmail($data['user'], $_POST['newPassword']);
 				}
 				else
@@ -595,11 +623,19 @@ class Pages extends CI_Controller {
 		return $data;
 	}
 
-	//Página e saque
+	//Página de saque
 	public function withdraw($data) {
 		//Informações da Página
 		$data['page']['title'] = 'Saque';
 		$data['page']['url'] = 'withdraw';
+		return $data;
+	}
+
+	//Página de pagamento de fatura
+	public function paybill($data) {
+		//Informações da Página
+		$data['page']['title'] = 'Pagar Fatura';
+		$data['page']['url'] = 'paybill';
 		return $data;
 	}
 	
@@ -715,35 +751,37 @@ class Pages extends CI_Controller {
 	}
 	
 	//LOGIN PAGE
-	public function login() {			
+	public function login() {
 		//Informações da Página
 		$data['page']['title'] = 'Compre & Ganhe - Entrar';
 		$data['page']['url'] = 'login';
 		if(isset($_POST['submit'])) {
+			//$this->load->model('captcha');	
 			//Captcha validation
-			if(!$this->captcha->validate($_POST['captcha']))
-				$data = $this->helper->sendMessage($data, 'captcha', NULL, false, 'Você deve digitar a palavra exatamente como está na imagem.');
+			if(!$this->captcha->validateReCaptcha())
+				$data = $this->helper->sendMessage($data, 'login', NULL, false, 'Você deve marcar o campo "Não sou um robô".');
 			//Username incorrect
-			else if(!$this->user->existsByUsername($_POST['username']))
-				$data = $this->helper->sendMessage($data, 'login', NULL, false, 'Usuário inexistente.');
+			else if(!$this->user->existsByCPF($_POST['cpf']))
+				$data = $this->helper->sendMessage($data, 'login', NULL, false, 'CPF não cadastrado.');
 			//Password incorrect
-			else if (!$this->user->login($_POST['username'], $_POST['password']))
+			else if (!$this->user->loginCPF($_POST['cpf'], $_POST['password']))
 				$data = $this->helper->sendMessage($data, 'login', NULL, false, 'Senha incorreta.');
 			//Success
 			else  {
+				$user = $this->user->getUserByCPF($_POST['cpf']);
 				if(isset($_SESSION)) {
-					$_SESSION['loggedIn'] = true;
-					$_SESSION['username'] = $_POST['username'];
-					$_SESSION['date/time'] = mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
+					$_SESSION['loggedIn'] 	= true;
+					$_SESSION['username'] 	= $user->username;
+					$_SESSION['date/time'] 	= mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
 				}
 				else {
 					$_SESSION = array('loggedIn'	=> true,
-								  'username'	=> $_POST['username'],
-								  'date/time'	=> mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo')));	
+								  	  'username'	=> $user->username,
+								  	  'date/time'	=> mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo')));	
 				}
-				$username = $_POST['username'];
+				$username = $user->username;
 				$password = urlencode($_POST['password']);
-				redirect("login?username=$username&password=$password");
+				redirect("login?reload=true&username=$username&password=$password");
 				return;
 			}
 		}
@@ -766,7 +804,57 @@ class Pages extends CI_Controller {
 			}
 		}
 		//Stores captcha info in page
-		$data['captcha'] = $this->captcha->create();
+		//$data['captcha'] = $this->captcha->create();
+		//Carrega a página
+		$this->helper->loadPage($data);
+	}
+
+	//RESET PASSWORD PAGE
+	public function resetPassword() {			
+		//Informações da Página
+		$data['page']['title'] = 'Compre & Ganhe - Recuperar senha';
+		$data['page']['url'] = 'resetPassword';
+		$data['changeAuth'] = false;
+		if(isset($_POST['submit'])) {
+			//Username 
+			if(!$this->user->existsByEmailCPF($_POST['email'],$_POST['cpf']))
+				$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'E-mail e CPF não cadastrados ou não coincidem.');
+			//Success
+			else  {
+				$user = $this->user->getUserByEmail($_POST['email']);
+				if($user != NULL) {
+					$this->helper->sendChangeResetPasswordEmail($user);
+					$data = $this->helper->sendMessage($data, 'submit', NULL, true, 'A senha foi enviada para o e-mail cadastrado.');
+				}
+				else 
+					$data = $this->helper->sendMessage($data, 'submit', NULL, false, 'Ocorreu um erro. Tente novamente por favor.');
+			}
+		}
+		if(isset($_GET['us']) && $_GET['us'] != "" && isset($_GET['pw']) && $_GET['pw'] != "") {
+			$username = $_GET['us'];
+			$password = $_GET['pw'];
+			if($this->user->loginWithoutDecrypt($username,$password))
+				$data['changeAuth'] = true;
+			if(isset($_POST['submitChange'])) {
+				//Password not match
+				if ($_POST['newPassword'] != $_POST['newPasswordRepeat'])
+					$data = $this->helper->sendMessage($data, 'password', NULL, false, 'A senha e repetição de senha devem ser idênticas.');
+				//Success
+				else {
+					if($this->user->updatePassword($username, $_POST['newPassword'])) {
+						$user = $this->user->getUserByUsername($username);
+						if($user != NULL) {
+							$this->helper->sendChangePasswordEmail($user,$_POST['newPassword']);
+							$data = $this->helper->sendMessage($data, 'password', NULL, true, 'Sua senha foi atualizada com sucesso!');	
+						}
+						else
+							$data = $this->helper->sendMessage($data, 'password', NULL, false, 'Ocorreu um erro. Tente novamente.');
+					}
+					else
+						$data = $this->helper->sendMessage($data, 'password', NULL, false, 'Ocorreu um erro. Tente novamente.');
+				}
+			}
+		}
 		//Carrega a página
 		$this->helper->loadPage($data);
 	}

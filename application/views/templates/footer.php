@@ -1,19 +1,19 @@
-<!-- HEADER -->
-		<!-- PAGE CONTENT -->
-        
-		</div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="/assets/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- Morris Charts JavaScript -->
-    <!--<script src="/assets/vendor/raphael/raphael.min.js"></script>-->
-    <!--<script src="/assets/vendor/morrisjs/morris.min.js"></script>
-    <script src="/assets/data/morris-data.js"></script>-->
-    <!-- Custom Theme JavaScript -->
-    <script src="/assets/dist/js/sb-admin-2.min.js"></script>
-</body>
+	<!-- NAVIGATION -->
+
+    <!-- PAGE CONTENT -->
+
+    <!-- Custom Javascript -->
+    <script src="assets/js/custom.js"></script>
+    <!-- Mask -->
+    <script src="assets/js/mask.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="assets/js/creative.min.js"></script>
+  </body>
 </html>

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'smallvisor.com',
-	'username' => 'smallvis_admin',
-	'password' => 'small2018vis',
-	'database' => 'smallvis_sv',
+	'hostname' => 'mysql.compreeganhe.net',
+	'username' => 'compreeganhe',
+	'password' => 'ccg270488',
+	'database' => 'compreeganhe',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

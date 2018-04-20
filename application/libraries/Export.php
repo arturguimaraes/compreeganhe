@@ -8,23 +8,91 @@ class Export {
 	public function __construct() {
 		// Assign the CodeIgniter super-object
 		$this->CI =& get_instance();
-		$this->CI->load->model(array('user','order','network','transaction'));
-		$this->CI->load->library(array('util'));
+		$this->CI->load->model(array('user','order','network','transaction','adminModel'));
+		$this->CI->load->library(array('util','fpdf'));
 	}
 	
 	//Export to .txt files
 	public function export() {
 		//Verifica se o usuário está logado
-		if(!$this->CI->user->checkLogin()) {
-			//$this->login();
+		if(!$this->CI->user->checkLogin() && !$this->CI->adminModel->checkLogin()) {
 			redirect('/login');
 			return;
 		}
 
-		if(!isset($_GET['content'])) {
-			//$this->myaccount();
+		if(!isset($_GET['content']) && !isset($_GET['admin'])) {
 			redirect('/myaccount');
 		}
+		//Export de admin
+		else if(isset($_GET['admin'])) {
+			//Cria arquivo e baixa
+			switch($_GET['admin']) {
+				case '1':
+					//Pega os pedidos
+					$data['orders'] = $this->CI->order->getAllExportAdmin1();
+					$pdf = new $this->CI->fpdf();
+					$pdf->AddPage();
+					$pdf->SetFont('Arial','B',16);
+					$pdf->Cell(40,10,'Relatório de cadastros');
+					//Headers do arquivo
+					$header = array("Data","Referência","Referência do PagSeguro","Descrição","Status","Valor Total","Tipo de Pagamento");
+					$pdf->AddPage();
+					$pdf->SetFont('Arial','',6);
+					$pdf->ImprovedTable($header, $data['orders']);
+					$pdf->Output('','exportacao-cadastros.pdf',false);
+					/*$text = "Data,Id do Indicador,Referência,Referência do PagSeguro,Descrição,Status,Valor Total,Tipo de Pagamento,";
+					$user = $this->CI->user->getUserDataById($data['orders'][0]->sonId);
+					foreach(get_object_vars($user) as $key => $value)
+						$text .= $key . ",";
+					$text .= "\n";
+					foreach($data['orders'] as $order) {
+						$text .= $this->CI->util->dateTimeToString($order->createDate) . "," . 
+								 $order->fatherId . "," . 
+								 $order->reference . "," . 
+								 $order->transactionId . "," . 
+								 $order->description . "," . 
+								 $order->status . "," . 
+								 number_format($order->total, 2, '.', '') . "," . 
+								 $order->payment . ",";
+						$user = $this->CI->user->getUserDataById($order->userId);
+						foreach(get_object_vars($user) as $key => $value)
+							$text .= $value . ",";
+						$text .= "\n";
+					}
+					$this->writeUTF8File("exportacao-cadastros.csv", $text);
+					$this->download("exportacao-cadastros.csv");
+					redirect('/adminOrders?limit=100');*/
+					break;
+				case '2':
+					//Pega os pedidos
+					$data['orders'] = $this->CI->order->getAllExportAdmin2();
+					//Headers do arquivo .csv
+					$text = "Data,Id do Indicador,Referência,Referência do PagSeguro,Descrição,Status,Valor Total,Tipo de Pagamento,";
+					$user = $this->CI->user->getUserDataById($data['orders'][0]->sonId);
+					foreach(get_object_vars($user) as $key => $value)
+						$text .= $key . ",";
+					$text .= "\n";
+					foreach($data['orders'] as $order) {
+						$text .= $this->CI->util->dateTimeToString($order->createDate) . "," . 
+								 $order->fatherId . "," . 
+								 $order->reference . "," . 
+								 $order->transactionId . "," . 
+								 $order->description . "," . 
+								 $order->status . "," . 
+								 number_format($order->total, 2, '.', '') . "," . 
+								 $order->payment . ",";
+						$user = $this->CI->user->getUserDataById($order->userId);
+						foreach(get_object_vars($user) as $key => $value)
+							$text .= $value . ",";
+						$text .= "\n";
+					}
+					$this->writeUTF8File("exportacao-compras.csv", $text);
+					$this->download("exportacao-compras.csv");
+					redirect('/adminOrders?limit=100');
+					break;
+			}
+		}
+		//Export normal
 		else {
 			//Pega os dados do usuário logado
 			$data['user'] = $this->CI->user->getUserData();
@@ -57,7 +125,6 @@ class Export {
 					$this->download("mybudget.csv");
 					redirect('/mybudget');
 					break;
-
 				case 'mynetwork':
 					//Adiciona as informações do próprio usuário no array da rede
 					$node = array('user' => $data['user'], 'level' => 'Dono', 'children' => $this->CI->network->getSons($data['user']->id));
@@ -76,7 +143,6 @@ class Export {
 					$this->download("mynetwork.csv");
 					redirect('/mynetwork');
 					break;
-				
 			}
 		}
 	}

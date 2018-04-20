@@ -49,7 +49,7 @@ class Captcha extends CI_Model {
 				FROM captcha 
 				WHERE word = ? 
 				AND ip_address = ? 
-				AND captcha_time > ?';
+				AND captcha_time >= ?';
 		$binds = array($captcha, $this->input->ip_address(), $expiration);
 		$query = $this->db->query($sql, $binds);
 		$row = $query->row();
@@ -57,6 +57,17 @@ class Captcha extends CI_Model {
 		if ($row->count == 0)
 			return false;
 		return true;
+	}
+
+	public function validateReCaptcha() {
+		//verify captcha
+        $recaptcha_secret = "6LeFX08UAAAAAFd-I0JtyTrYOyf3X-kuqAwGoSca";
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret."&response=".$_POST['g-recaptcha-response']);
+        $response = json_decode($response, true);
+        if($response["success"] === true)
+        	return true;
+        else
+        	return false;
 	}
 
 }

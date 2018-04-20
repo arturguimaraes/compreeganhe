@@ -1,11 +1,26 @@
+<!-- PrintThis.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.12.3/printThis.min.js"></script>
+
 <h1>Pedidos</h1>
-<div class="row display-flex margin-bottom-10">
+<div class="row">
 	<div class="col-md-12">
-        <input id="reference" type="text" onfocus="autoFillReference();" class="form-control filter-search margin-bottom-10 margin-right-10" placeholder="Buscar por Referência (ex: CG-0934203409023902934)" style="width:240px;display:initial;">
-        <input class="btn margin-bottom-10 margin-right-10" type="button" onclick="filter();" value="Buscar">
-		<a href="adminOrders?limit=1000" class="btn btn-success margin-bottom-10 margin-right-10">Últimos 1000</a>
-    	<a href="adminOrders?limit=10000" class="btn btn-success margin-bottom-10 margin-right-10">Últimos 10000</a>
-    	<a href="adminOrders" class="btn btn-success margin-bottom-10 margin-right-10">Todos</a>
+        <input id="reference" type="text" class="form-control margin-bottom-10 margin-right-10" placeholder="Referência (Ex: 234934902394)" maxlength="12" value="<?=isset($_GET['reference']) ? $_GET['reference'] : ""?>">
+        <input id="dateStart" type="date" class="form-control margin-bottom-10 margin-right-10" placeholder="01/01/2018" onblur="setDateMin();" value="<?=isset($_GET['dateStart']) ? $_GET['dateStart'] : ""?>">
+        <input id="dateEnd" type="date" class="form-control margin-bottom-10 margin-right-10" placeholder="02/01/2018" value="<?=isset($_GET['dateEnd']) ? $_GET['dateEnd'] : ""?>">
+        <input class="btn margin-top-8 margin-bottom-10 margin-right-10" type="button" value="Buscar" onclick="filter();">
+		<a href="adminOrders?limit=1000" class="btn btn-success margin-top-8 margin-bottom-10 margin-right-10">Últimos 1000</a>
+    	<a href="adminOrders?limit=10000" class="btn btn-success margin-top-8 margin-bottom-10 margin-right-10">Últimos 10000</a>
+    	<a href="adminOrders" class="btn btn-success margin-top-8 margin-bottom-10 margin-right-10">Todos</a>
+    </div>
+    <div class="col-md-12">
+        <a onclick="exportAdmin1();" class="btn btn-info margin-top-8 margin-bottom-10 margin-right-10">Exportar Cadastros</a>
+        <a onclick="exportAdmin2();" class="btn btn-info margin-top-8 margin-bottom-10 margin-right-10">Exportar Compras</a>
+        <!--<form method="post" class="export-container">
+            <button name="export1" type="submit" value="submit" class="btn btn-info">Exportar Cadastros</button>
+        </form>
+        <form method="post" class="export-container margin-left-10">
+            <button name="export2" type="submit" value="submit" class="btn btn-info">Exportar Compras</button>
+        </form>-->
     </div>
 </div>
 <div class="row admin-table margin-bottom-20">

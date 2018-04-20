@@ -66,6 +66,13 @@ class User extends CI_Model {
 		return array();
 	}
 
+	public function countAll() {
+		$query = "SELECT count(id) as count
+				  FROM user";
+		$result = $this->db->query($query)->result();
+		return (int) $result[0]->count;
+	}
+
 	public function getAllIDs() {
 		$query = "SELECT id
 				  FROM user";
@@ -81,7 +88,29 @@ class User extends CI_Model {
 				  WHERE email = '$email'
 				  LIMIT 1";
 		$result = $this->db->query($query)->result();
-		if(count($result) == 1) 
+		if(count($result) >= 1) 
+			return $result[0];
+		return NULL;
+	}
+
+	public function getUserByUsername($username) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE username = '$username'
+				  LIMIT 1";
+		$result = $this->db->query($query)->result();
+		if(count($result) >= 1) 
+			return $result[0];
+		return NULL;
+	}
+
+	public function getUserByCPF($cpf) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE cpf = '$cpf'
+				  LIMIT 1";
+		$result = $this->db->query($query)->result();
+		if(count($result) >= 1) 
 			return $result[0];
 		return NULL;
 	}
@@ -159,8 +188,88 @@ class User extends CI_Model {
 				  FROM user
 				  WHERE username = '$username'";
 		$result = $this->db->query($query)->result();
-		
 		if (count($result) == 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByEmail($email) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE email = '$email'";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByCPF($cpf) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE cpf = '$cpf'";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByRG($rg) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE rg = '$rg'";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByEmailID($id, $email) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE email = '$email'
+				  AND id NOT IN ($id)";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByCPFID($id, $cpf) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE cpf = '$cpf'
+				  AND id NOT IN ($id)";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByRGID($id, $rg) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE rg = '$rg'
+				  AND id NOT IN ($id)";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
+			return true;
+		else
+			return false;		
+	}
+
+	public function existsByEmailCPF($email, $cpf) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE email = '$email'
+				  AND cpf = '$cpf'";
+		$result = $this->db->query($query)->result();
+		if (count($result) >= 1)
 			return true;
 		else
 			return false;		
@@ -171,7 +280,6 @@ class User extends CI_Model {
 				  FROM user
 				  WHERE id = '$id'";		  
 		$result = $this->db->query($query)->result();
-		
 		if (count($result) == 1)
 			return true;
 		else
@@ -184,7 +292,30 @@ class User extends CI_Model {
 				  WHERE username = '$username'
 				  AND password = SHA('$password')";
 		$result = $this->db->query($query)->result();
-		
+		if (count($result) == 1)
+			return true;
+		else
+			return false;
+	}
+
+	public function loginCPF($cpf, $password) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE cpf = '$cpf'
+				  AND password = SHA('$password')";
+		$result = $this->db->query($query)->result();
+		if (count($result) == 1)
+			return true;
+		else
+			return false;
+	}
+
+	public function loginWithoutDecrypt($username, $password) {
+		$query = "SELECT *
+				  FROM user
+				  WHERE username = '$username'
+				  AND password = '$password'";
+		$result = $this->db->query($query)->result();
 		if (count($result) == 1)
 			return true;
 		else
@@ -236,13 +367,13 @@ class User extends CI_Model {
 			return false;
 	}
 
-	public function create($fatherId, $data) {
+	public function create($fatherId, $data, $username) {
 		//Pega a hora atual
 		$createDate =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
 		//Cria o usuário baseado no CPF
-		$username = substr($data->cpf, 0, 3);
+		//$username = substr($data->cpf, 0, 3);
 		//Gera senha aleatória (feita na na controller por causa do e-mail de cadastro)
-		//$password = $this->util->geraSenha(15, true, true, true);
+		//$this->util->geraSenha(15, true, true, true);
 		//Converte a data para o formato correto
 		$data->dob = $this->dateStringToDate($data->dob);
 		//Query de inserção SQL
@@ -251,7 +382,8 @@ class User extends CI_Model {
 				  rg, dob, cep, logradouro, numero, 
 				  complemento, bairro, cidade, estado,
 				  telefone, estadoCivil, motherName,
-				  fatherName, createDate, balance, graduation)
+				  fatherName, createDate, balance, graduation, 
+				  code, sexo, profissao, escolaridade)
 				  VALUES 
 				  ('$username', SHA1('$data->password'), 
 				  '$data->name', '$data->email', '$data->cpf', '$data->rg',
@@ -259,14 +391,14 @@ class User extends CI_Model {
 				  '$data->numero', '$data->complemento', '$data->bairro',
 				  '$data->cidade', '$data->estado', '$data->telefone',
 				  '$data->estadoCivil', '$data->motherName', '$data->fatherName',
-				  '$createDate', 0, 'INICIANTE')";
-		
+				  '$createDate', 0, 'INICIANTE', '$username',
+				  '$data->sexo', '$data->profissao', '$data->escolaridade')";
 		if ($this->db->query($query)) {
 			$newId = $this->db->insert_id();
 			$success = $this->network->create($fatherId, $newId);
 			if($success) {
-				$newUsername = $this->updateUsername($newId, $username);
-				$this->helper->sendSignUpEmail($data->name, $newUsername, $password, $data->email);
+				//$newUsername = $this->updateUsername($newId, $username);
+				$this->helper->sendSignUpEmail($data->name, $data->cpf, $data->password, $data->email);
 				return $this->getUserDataById($newId);
 			}
 		}
@@ -302,7 +434,8 @@ class User extends CI_Model {
 					  escolaridade = '$data->escolaridade',
 					  pis = '$data->pis',
 					  profissao = '$data->profissao',
-					  updateDate = '$updateDate'
+					  updateDate = '$updateDate',
+					  changed = 1
 					  WHERE username = '$username'";
 			
 			return $this->db->query($query);
@@ -424,6 +557,21 @@ class User extends CI_Model {
 		return false;
 	}
 
+	public function updateAdmin($post) {
+		//Gets time
+		$updateDate =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
+		//Sets data
+		$data = array(
+	        'email' 		=> $post->email,
+	        'cpf' 			=> $post->cpf,
+	        'rg' 			=> $post->rg,
+	        'telefone' 		=> $post->telefone,
+	        'updateDate'	=> $updateDate
+		);
+		$this->db->where('id', $post->id);
+		return $this->db->update('user', $data);
+	}
+
 	public function dateStringToDate($dateString) {
 		return substr($dateString, -4) . '-' . substr($dateString, -7, 2) . '-' . substr($dateString, -10, 2);
 	}
@@ -437,7 +585,7 @@ class User extends CI_Model {
 	}
 	
 	public function getPureNumber($phone) {
-		return str_replace(" ", "", substr($phone, 5));
+		return str_replace("-", "", str_replace(" ", "", substr($phone, 5)));
 	}
 	
 	public function getPureCPF($cpf) {

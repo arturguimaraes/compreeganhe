@@ -8,7 +8,7 @@ class Message extends CI_Model {
 	}
 	
 	public function get($id) {
-		$query = "SELECT *, message.id as messageId
+		$query = "SELECT *, message.id as messageId, message.createDate as messageCreateDate
 				  FROM message
 				  INNER JOIN user ON user.id = message.from
 				  WHERE message.id = '$id'";		  
@@ -30,6 +30,19 @@ class Message extends CI_Model {
 		if (count($result) > 0)
 			return $result;
 		return array();		
+	}
+
+	public function getAllAdmin() {
+		$query = "SELECT *, message.id as messageId, message.createDate as createDate
+				  FROM message
+				  INNER JOIN user ON user.id = message.from
+				  WHERE message.to = '0'
+				  AND deleted = 0
+				  ORDER BY message.createDate DESC";
+		$result = $this->db->query($query)->result();
+		if (count($result) > 0)
+			return $result;
+		return array();
 	}
 	
 	public function getAllSent($userId) {
@@ -105,6 +118,13 @@ class Message extends CI_Model {
 				  SET message.deleted = '1', message.read = '1'
 				  WHERE id = '$id'
 				  AND message.to = '$userId'";
+		return $this->db->query($query);
+	}
+
+	public function deleteAdmin($id) {
+		$query = "UPDATE message
+				  SET message.deleted = '1', message.read = '1'
+				  WHERE id = '$id'";
 		return $this->db->query($query);
 	}
 	

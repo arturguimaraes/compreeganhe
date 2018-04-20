@@ -87,6 +87,45 @@ class Order extends CI_Model {
 			return array();		
 	}
 
+	public function getAllExportAdmin1() {
+		//Inicia os filtros
+		$referenceFilter = "";
+		//Filtra por referencia
+		if(isset($_GET['reference']) && $_GET['reference'] != "")
+			$referenceFilter = " AND reference = '" . $_GET['reference'] . "' ";
+		//Query de pesquisa
+		$query = "SELECT *, `order`.createDate as orderCreateDate, user.createDate as userCreateDate, `order`.id as orderId
+				  FROM `order`
+				  LEFT JOIN network ON `order`.userId = network.sonId
+				  LEFT JOIN user ON user.id = `order`.userId
+				  WHERE `order`.description like '%Inscrição%' "
+				  . $referenceFilter .
+				  " ORDER BY `order`.updateDate DESC, `order`.createDate DESC";
+		//Executa a query
+		$result = $this->db->query($query)->result();
+		return count($result) > 0 ? $result : array();
+	}
+
+	public function getAllExportAdmin2() {
+		//Inicia os filtros
+		$referenceFilter = "";
+		//Filtra por referencia
+		if(isset($_GET['reference']) && $_GET['reference'] != "")
+			$referenceFilter = " AND reference = '" . $_GET['reference'] . "' ";
+		//Query de pesquisa
+		$query = "SELECT *, `order`.createDate as orderCreateDate, user.createDate as userCreateDate, `order`.id as orderId
+				  FROM `order`
+				  LEFT JOIN network ON `order`.userId = network.sonId
+				  LEFT JOIN user ON user.id = `order`.userId
+				  WHERE (`order`.description like '%Kit%'
+				  OR `order`.description like '%Multi%') "
+				  . $referenceFilter .
+				  " ORDER BY `order`.updateDate DESC, `order`.createDate DESC";
+		//Executa a query
+		$result = $this->db->query($query)->result();
+		return count($result) > 0 ? $result : array();
+	}
+
 	public function getByTransactionID($transactionId) {
 		$query = "SELECT *
 				  FROM `order`

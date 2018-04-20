@@ -175,12 +175,12 @@ function checkDOB(dob) {
 	if(!checkIfDate(dob)) {
 		alert("Data inválida.");
 		$("#dob").val("");
-		$("#cep").focus();
+		$("#telefone").focus();
 	}
 	else if(getAge(dob) < 18) {
 		alert("Você precisa ser maior de 18 anos para se cadastrar.");
 		$("#dob").val("");
-		$("#cep").focus();
+		$("#telefone").focus();
 	}
 }
 

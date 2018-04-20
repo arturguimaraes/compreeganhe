@@ -16,7 +16,6 @@ class Login {
 	public function checkLoginAndPayment($data) {
 		//Verifica se o usuário está logado
 		if(!$this->CI->user->checkLogin()) {
-			//$this->login();
 			redirect('/login');
 			return false;
 		}
@@ -63,7 +62,6 @@ class Login {
 	public function checkLogin() {
 		//Verifica se o usuário está logado
 		if(!$this->CI->user->checkLogin()) {
-			//$this->login();
 			redirect('/login');
 			return false;
 		}
@@ -74,7 +72,6 @@ class Login {
 	public function notAllowed($data) {
 		//Verifica se o usuário está logado
 		if(!$this->CI->user->checkLogin()) {
-			//$this->login();
 			redirect('/login');
 			return;
 		}		

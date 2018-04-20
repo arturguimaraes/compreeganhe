@@ -28,9 +28,9 @@
                   <li><a href="mybudget" class="dropdown-menu-item"><i class="fa fa-calculator"></i> Extrato</a></li>
                   <li><a href="mynetwork" class="dropdown-menu-item"><i class="fa fa-group"></i> Rede</a></li>
                   <li><a href="withdraw" class="dropdown-menu-item"><i class="fa fa-dollar"></i> Saque</a></li>
-                  <li><a href="pay" class="dropdown-menu-item"><i class="fa fa-barcode"></i> Pagar Fatura</a></li>
+                  <li><a href="paybill" class="dropdown-menu-item"><i class="fa fa-barcode"></i> Pagar Fatura</a></li>
                   <li><a href="myinfo" class="dropdown-menu-item"><i class="fa fa-drivers-license"></i> Dados Cadastrais</a></li>
-                  <li><a href="password" class="dropdown-menu-item"><i class="fa fa-lock"></i> Mudar Senha</a></li>
+                  <li><a href="password" class="dropdown-menu-item"><i class="fa fa-lock"></i> Trocar Senha</a></li>
                   <!--<li><a href="messages" class="dropdown-menu-item"><i class="fa fa-envelope"></i> Mensagens</a></li>-->
                 </ul>
               </div>

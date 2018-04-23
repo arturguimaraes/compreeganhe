@@ -36,6 +36,7 @@
                     <th scope="col">Última Atualização</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Status</th>
+                    <!--<th scope="col">Excluir</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -65,6 +66,7 @@
                                     <? } ?>
                                 </select>
                             </td>
+                            <!--<td><a class="btn btn-danger" onclick="deleteOrder(<?=$order->id?>,'<?=$order->reference?>');">Excluir</a></td>-->
                         </tr>
                     <?php } ?>
                 <?php } else { ?>

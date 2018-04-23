@@ -170,6 +170,18 @@ class Order extends CI_Model {
 			return NULL;		
 	}
 
+	public function getPaymentOrders($userId) {
+		//Query de pesquisa
+		$query = "SELECT *
+				  FROM `order`
+				  WHERE  userId = $userId 
+				  AND description LIKE '%Inscrição%'
+				  ORDER BY createDate DESC";
+		//Executa a query
+		$result = $this->db->query($query)->result();
+		return count($result) > 0 ? $result : array();
+	}
+
 	public function create($order, $userId, $reference) {
 		$createDate =  mdate('%Y-%m-%d %H:%i:%s', now('America/Sao_Paulo'));
 		$total = 0;
@@ -271,6 +283,11 @@ class Order extends CI_Model {
 			return $result;
 		else
 			return array();;		
+	}
+
+	public function delete($orderId) {
+		$this->db->where('id', $orderId);
+		return $this->db->delete('`order`');
 	}
 
 }

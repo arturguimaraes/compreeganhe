@@ -20,6 +20,7 @@
                     <th scope="col">Última Atualização</th>
                     <th scope="col">Graduação</th>
                     <th scope="col">Data de Ativação</th>
+                    <th scope="col">Pedido de cadastro</th>
                     <th scope="col">Saldo</th>
                     <th scope="col">Alterar Dados</th>
                 </tr>
@@ -51,6 +52,14 @@
                                 </select>
                             </td>
                             <td><?=$user->userPaymentDate?></td>
+                            <td><?=$user->reference?></td>
+                            <!--<td>
+                            	<select name="paymentOrder<?=$user->id?>" class="form-control" onchange="changePaymentReference(<?=$user->id?>,this.value);">
+                            		<?php foreach($user->paymentOrders as $paymentOrder) { ?>
+                            			<option <?=$paymentOrder->reference == $user->reference ? 'selected' : ''?> value="<?=$paymentOrder->reference?>"><?=$paymentOrder->reference?></option>
+                            		<? } ?>
+                                </select>
+                            </td>-->
                             <td>R$ <?=number_format($user->balance, 2, ',', '')?></td>
                             <td><a class="btn btn-warning" onclick="modalDadosUsuario(<?=$user->id?>);">Alterar</a></td>
                         </tr>

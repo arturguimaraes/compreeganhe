@@ -26,6 +26,17 @@ function changeGraduation(userId, graduation) {
 	window.location.href = "adminUsers?id=" + userId + "&graduation=" + graduation;
 }
 
+function changePaymentReference(userId, reference) {
+	window.location.href = "adminUsers?id=" + userId + "&paymentReference=" + reference;
+}
+
+function deleteOrder(orderId, reference) {
+	if (confirm("Tem certeza que deseja deletar o pedido " + reference + "?")) {
+	    alert("Deletou " + reference + "(id: " + orderId + ")");
+	    window.location.href = "adminOrders?delete=true&orderId=" + orderId;
+	}
+}
+
 function filter() {
 	var parameters = []
 	if($('#reference').val() != "")

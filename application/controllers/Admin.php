@@ -177,6 +177,16 @@ class Admin extends CI_Controller {
 				return;
 			}
 		}
+		//Deleta pedido
+		if(isset($_GET['delete']) && isset($_GET['orderId'])) {
+			$order = $this->order->get($_GET['orderId']);
+			if($order != NULL) {
+				//Deleta pedido
+				$this->order->delete($order->id);
+				redirect('adminOrders?limit=100');
+				return;
+			}
+		}
 		//Exportação
 		if(isset($_POST['export1']))
     		redirect("/export?admin=1");
@@ -212,6 +222,17 @@ class Admin extends CI_Controller {
 				return;
 			}
 		}
+		//Atualiza referência de pagamento
+		if(isset($_GET['id']) && isset($_GET['paymentReference'])) {
+			$user = $this->user->getUserDataById($_GET['id']);
+			if($user != NULL) {
+				$paymentReference = $_GET['paymentReference'];
+				//Atualiza referência de pagamento
+				$this->userPayment->updatePaymentReference($user->id, $paymentReference);
+				redirect('adminUsers?limit=100');
+				return;
+			}
+		}
 		//Informações da página
 		$data['page']['title'] = "Compre & Ganhe - Administração - Gerenciar Usuários";
 		//Pega todos os pedidos do banco
@@ -220,6 +241,7 @@ class Admin extends CI_Controller {
 			$user->color = $this->util->getGraduationColor($user->graduation);
 			$user->father = $this->network->getFather($user->id) != NULL ? $this->network->getFather($user->id)->username : "";
 			$user->firstName = explode(' ',trim($user->name))[0];
+			$user->paymentOrders = $this->order->getPaymentOrders($user->id);
 		}
 		$this->load('users', $data);
 	}

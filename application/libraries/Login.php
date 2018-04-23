@@ -8,7 +8,7 @@ class Login {
 	public function __construct() {
 		// Assign the CodeIgniter super-object
 		$this->CI =& get_instance();
-		$this->CI->load->model(array('user'));	
+		$this->CI->load->model(array('user','order'));	
 		$this->CI->load->library(array('helper'));
 	}	
 	
@@ -29,6 +29,18 @@ class Login {
 			return false;
 		}
 		
+		//Verifica se há pedidos na base
+		$orders = $this->CI->order->getAll($user->id);
+		//Se tiver pedidos duplicados
+		if(count($orders) > 1) {
+			foreach($orders as $orderDup) {
+				if(strpos($orderDup->description, "Inscrição") !== false && $orderDup->transactionId == NULL && $orderDup->status == "Enviado ao PagSeguro") {
+					$this->CI->order->updateStatus($orderDup->id,"Cancelado");
+					$this->CI->order->updateTransactionIdCancelled($orderDup->id);
+				}
+			}
+		}
+
 		//Pega pedido na base
 		$order = $this->CI->user->checkPaymentCleared($user->id);
 		//Não encontrou o pedido
@@ -43,6 +55,9 @@ class Login {
 			return false;
 		}
 		
+
+		//var_dump($order);
+
 		//Se o pedido não tiver sido aprovado ainda
 		if($order->status != 'Aprovado' && $order->status != 'Aprovada') {
 			$this->paymentNotCleared($data, $order);

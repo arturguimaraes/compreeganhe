@@ -38,11 +38,13 @@
           </tbody>
         </table>
       </div>
-      <p class="text-align-center">Parece que seu pagamento está com o seguinte status:</p>
-      <p class="text-align-center"><b><?=$order->status?></b></p>
-      <p class="text-align-center">Entre no site do <a href="https://pagseguro.uol.com.br/">PagSeguro</a> e verifique o status da compra.</p>
-      <p class="text-align-center">Se preferir, faça outro pedido e realize o pagamento da taxa de inscrição.</p>
-      <div class="col-md-3 margin-auto-horizontal">
+      <p>Parece que seu pagamento está com o seguinte status: <b><?=$order->status?></b></p>
+      <?php if($order->status == "Aguardando Pagto") { ?>
+        <p>Isso significa que o pagamento ainda está sendo processado. Nossa recomendação é que você aguarde um pouco antes de fazer outro pedido. Se você pagou por boleto, aguarde pelo menos 2 dias úteis antes de fazer um novo pedido.</p>
+      <? } ?>
+      <p>Entre no site do <b><a href="https://pagseguro.uol.com.br/">PagSeguro</a></b> e verifique o status da compra.</p>
+      <p>Se preferir, entre e contato com a equipe do <b><a href="/sendMessage?id=1&ln=true">Compre & Ganhe</a></b>, peça o cancelamento dos pedidos anteriores e faça outro pedido para realizar o pagamento da taxa de inscrição.</p>
+      <div class="col-md-3 margin-auto-horizontal hidden">
         <a class="btn btn-success btn-block btn-lg" href="/product?id=1">Pagar Taxa de Inscrição</a>
       </div>
     </div>

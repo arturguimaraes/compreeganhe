@@ -9,7 +9,7 @@
       <?php if($this->user->checkLogin()) { ?>
       	<ul class="navbar-nav">
         	<li class="nav-item">
-          		<a class="nav-link" href="myaccount">Bem vindo, <?=$user->names[0]?> (<?=$user->username?>)</a>
+          		<a class="nav-link" href="myaccount">Bem vindo(a), <?=$user->names[0]?> (<?=$user->username?>)</a>
           	</li>
       	</ul>
       <? } ?>

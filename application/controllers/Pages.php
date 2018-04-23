@@ -33,7 +33,7 @@ class Pages extends CI_Controller {
 		if($page != 'home') {
 			//Pega os dados do usuário logado
 			$data['user'] = $this->getUserData();
-			if($page == 'product' || $page == 'purchase') {
+			if($page == 'product' || $page == 'purchase' || $page == 'sendMessage') {
 				if(!$this->login->checkLogin())
 					return;
 			}
@@ -526,6 +526,8 @@ class Pages extends CI_Controller {
 			else
 				$data = $this->helper->sendMessage($data, 'message', NULL, false, 'Não foi possível enviar a mensage. Tente novamente.');
 		}
+		if(isset($_GET['ln']) && $_GET['ln'])
+			$data['page']['lockedNav'] = true;
 		if(!isset($_GET['id']) || $_GET['id'] == "" || $_GET['id'] == 0 || $_GET['id'] != 1)
 			$data['direct'] = false;
 		else {

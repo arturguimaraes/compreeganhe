@@ -38,10 +38,11 @@
           </tbody>
         </table>
       </div>
-      <p class="text-align-center">Por algum motivo, seu pedido consta em nossa base com o status <b>"<?=$order->status?>"</b>.</p>
-      <p class="text-align-center">Sendo assim, você precisa fazer outro pedido e realizar o pagamento antes de poder acessar sua conta.</p>
-      <p class="text-align-center">Se não entende o motivo do pagamento ter sido cancelado, entre no site do <a class="text-green" href="https://pagseguro.uol.com.br/">PagSeguro</a> e verifique o ocorrido.</p>
-      <p class="text-align-center">Se preferir, faça outro pedido e realize o pagamento da taxa de inscrição.</p>
+      <p>Por algum motivo, seu pedido consta em nossa base com o status <b>"<?=$order->status?>"</b>.</p>
+      <p>Sendo assim, você precisa fazer outro pedido e realizar o pagamento antes de poder acessar sua conta.</p>
+      <p>Se não entende o motivo do pagamento ter sido cancelado, entre no site do <b><a class="text-green" href="https://pagseguro.uol.com.br/">PagSeguro</a></b> e verifique o ocorrido.</p>
+      <p>Se a dúvida persistir, entre em contato com a equipe do <b><a href="/sendMessage?id=1&ln=true">Compre & Ganhe</a></b> para podermos ajudar.</p>
+      <p>Ou se preferir, faça outro pedido e realize o pagamento da taxa de inscrição.</p>
       <div class="col-md-3 margin-auto-horizontal">
         <a class="btn btn-success btn-block btn-lg" href="/product?id=1">Pagar Taxa de Inscrição</a>
       </div>
